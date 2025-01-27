@@ -4,8 +4,8 @@ body {
 }
 
 .card {
-    flex: 1 0 21%; /* Responsive layout */
-    min-width: 200px;
+    flex: 1 0 15%; /* Responsive layout */
+    min-width: 150px;
     margin: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;

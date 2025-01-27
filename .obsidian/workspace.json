@@ -1,0 +1,209 @@
+{
+  "main": {
+    "id": "9358d87b0abbd3f9",
+    "type": "split",
+    "children": [
+      {
+        "id": "87b7a3f481efdb60",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ca0b9d7ef9bda281",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Welcome.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Welcome"
+            }
+          }
+        ]
+      },
+      {
+        "id": "e73b4723ce586de3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c5748cf217f517c1",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "6dfff39f0351ae2b",
+    "type": "split",
+    "children": [
+      {
+        "id": "2ed44c95c43d0ff4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "347e2f27075c7542",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "fa3775553ed51ddc",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "0e5646f13fd6ff84",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "045bd4d72db3ecde",
+    "type": "split",
+    "children": [
+      {
+        "id": "594e0fb375e96db1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e632ea9c5674ed46",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Welcome.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Welcome"
+            }
+          },
+          {
+            "id": "7454e1c358c4938e",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Welcome.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Welcome"
+            }
+          },
+          {
+            "id": "19644b062de5a9e9",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "84e6b4b189307148",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Welcome.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Welcome"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "ca0b9d7ef9bda281",
+  "lastOpenFiles": [
+    "StartWebServer.bat",
+    "New Text Document.txt",
+    "Styles.css",
+    "structure.json",
+    "Home1.html",
+    "Home.html",
+    "generate_structure.py",
+    "QSheet/Welcome.md",
+    "QSheet",
+    "Event Sourcing/Kafka vs Azure Service Bus.md",
+    "Event Sourcing/Kafka vs Azure Event Hubs.md",
+    "Event Sourcing/Kafka vs Azure Cosmos DB.md",
+    "Event Sourcing/Kafka vs Azure Blob Storage.md",
+    "Event Sourcing/Azure Event Sourcing.md",
+    "Event Sourcing",
+    "css/theme_extra.css",
+    "css/theme.css",
+    "Cloud/example2.md",
+    "Cloud/example1.md",
+    "AWS/index.md",
+    "AKS/Diagram Deployment on AKS Cluster.md",
+    "AKS/DeployOnAKSCluster.gif",
+    "AKS/AKS Samples.md",
+    "AKS/AKS is PaaS or IaaS.md",
+    "Welcome.md"
+  ]
+}
