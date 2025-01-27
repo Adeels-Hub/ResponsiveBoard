@@ -1,0 +1,24 @@
+{
+    ".git": [],
+    "AKS": [
+        "AKS is PaaS or IaaS.md",
+        "AKS Samples.md",
+        "Diagram Deployment on AKS Cluster.md"
+    ],
+    "AWS": [
+        "index.html",
+        "index.md"
+    ],
+    "Cloud": [
+        "example1.md",
+        "example2.md"
+    ],
+    "css": [],
+    "Event Sourcing": [
+        "Azure Event Sourcing.md",
+        "Kafka vs Azure Blob Storage.md",
+        "Kafka vs Azure Cosmos DB.md",
+        "Kafka vs Azure Event Hubs.md",
+        "Kafka vs Azure Service Bus.md"
+    ]
+}

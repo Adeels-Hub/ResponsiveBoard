@@ -4,110 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Folder Viewer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-    <style>
-        body {
-            display: flex;
-            min-height: 100vh;
-            margin: 0;
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        async function loadStructure() {
+            try {
+                const response = await fetch("structure.json");
+                const data = await response.json();
+
+                const foldersDiv = document.getElementById("folders");
+                const filesDiv = document.getElementById("files");
+
+                foldersDiv.innerHTML = "";
+                for (const folder in data) {
+                    if (data[folder].length === 0) continue; // Skip empty folders
+                    const folderButton = document.createElement("button");
+                    folderButton.classList.add("btn", "btn-dark", "mb-2", "w-100");
+                    folderButton.textContent = folder;
+                    folderButton.addEventListener("click", () => displayFiles(folder, data[folder]));
+                    foldersDiv.appendChild(folderButton);
+                }
+
+                async function displayFiles(folder, files) {
+                    filesDiv.innerHTML = `<h2 class="text-center text-white bg-dark p-2">${folder}</h2>`;
+                    if (files.length === 0) {
+                        filesDiv.innerHTML += "<p>No files available.</p>";
+                    } else {
+                        const fileCards = await Promise.all(files.map(async file => {
+                            const filePath = `${folder}/${file}`; // Prepend folder name to file path
+                            const fileContent = await fetch(filePath)
+                                .then(res => res.ok ? res.text() : `Error response\n\nError code: ${res.status}\nMessage: ${res.statusText}`)
+                                .catch(() => "Failed to load content.");
+                            const preview = fileContent.substring(0, 1000); // Limit to 1000 characters
+                            return `
+                                <div class="card m-2 shadow">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${file.replace(/%20/g, " ")}</h5>
+                                        <p class="card-text">${preview}</p>
+                                    </div>
+                                </div>
+                            `;
+                        }));
+                        filesDiv.innerHTML += `<div class="d-flex flex-wrap">${fileCards.join("")}</div>`;
+                    }
+                }
+            } catch (error) {
+                console.error("Error loading structure.json:", error);
+            }
         }
-        #left-pane {
-            width: 20%;
-            border-right: 1px solid #ddd;
-            padding: 10px;
-        }
-        #right-pane {
-            width: 80%;
-            padding: 10px;
-            overflow-y: auto;
-        }
-        .card {
-            margin: 10px;
-        }
-    </style>
+
+        window.onload = loadStructure;
+    </script>
 </head>
 <body>
-    <div id="left-pane">
-        <h5>Folders</h5>
-        <div id="folder-list"></div>
+    <div class="container-fluid vh-100 d-flex">
+        <div class="col-3 bg-secondary text-white p-3 overflow-auto">
+            <h3 class="text-center">Folders</h3>
+            <div id="folders"></div>
+        </div>
+        <div class="col-9 p-3 bg-light overflow-auto">
+            <div id="files">
+                <h3 class="text-center text-muted">Select a folder to view its files</h3>
+            </div>
+        </div>
     </div>
-    <div id="right-pane">
-        <h5>Files</h5>
-        <div id="file-list" class="d-flex flex-wrap"></div>
-    </div>
-
-    <script>
-        async function fetchFolders() {
-            const response = await fetch("./");
-            const text = await response.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(text, "text/html");
-            const links = Array.from(doc.querySelectorAll("a")).filter(link => link.href.endsWith("/"));
-            return links.map(link => decodeURIComponent(link.textContent.trim().replace("/", "")));
-        }
-
-        async function fetchFiles(folder) {
-            const response = await fetch(`./${folder}/`);
-            const text = await response.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(text, "text/html");
-            const links = Array.from(doc.querySelectorAll("a")).filter(link => link.href.endsWith(".md") || link.href.endsWith(".html"));
-            return links.map(link => decodeURIComponent(link.textContent.trim()));
-        }
-
-        async function fetchFileContent(folder, file) {
-            const response = await fetch(`./${folder}/${file}`);
-            return await response.text();
-        }
-
-        function renderFolders(folders) {
-            const folderList = document.getElementById("folder-list");
-            folderList.innerHTML = "";
-            folders.forEach(folder => {
-                const button = document.createElement("button");
-                button.className = "btn btn-outline-primary w-100 mb-2";
-                button.textContent = folder;
-                button.onclick = () => loadFiles(folder);
-                folderList.appendChild(button);
-            });
-        }
-
-        async function loadFiles(folder) {
-            const files = await fetchFiles(folder);
-            const fileList = document.getElementById("file-list");
-            fileList.innerHTML = "";
-
-            files.forEach(async file => {
-                const card = document.createElement("div");
-                card.className = "card";
-                card.style.width = "18rem";
-
-                const cardBody = document.createElement("div");
-                cardBody.className = "card-body";
-
-                const cardTitle = document.createElement("h5");
-                cardTitle.className = "card-title";
-                cardTitle.textContent = file;
-
-                const cardText = document.createElement("p");
-                cardText.className = "card-text";
-
-                const content = await fetchFileContent(folder, file);
-                cardText.textContent = content.substring(0, 750); // Limit to 1000 characters
-
-                cardBody.appendChild(cardTitle);
-                cardBody.appendChild(cardText);
-                card.appendChild(cardBody);
-                fileList.appendChild(card);
-            });
-        }
-
-        async function init() {
-            const folders = await fetchFolders();
-            renderFolders(folders);
-        }
-
-        init();
-    </script>
 </body>
 </html>
