@@ -1,0 +1,3 @@
+- Use arrow functions for callbacks to avoid losing context.
+- Prefer `class` syntax over traditional constructor functions.
+- Be cautious when extracting methods from objects/classes and use `.bind()` or arrow functions as needed.

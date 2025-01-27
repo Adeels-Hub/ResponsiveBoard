@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Folder Viewer</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="stylesheet" href="styles.css">
     <script>
         async function loadStructure() {
@@ -25,29 +26,40 @@
                     foldersDiv.appendChild(folderButton);
                 }
 
-                async function displayFiles(folder, files) {
-                    filesDiv.innerHTML = `<h2 class="text-center text-white bg-dark p-2">${folder}</h2>`;
-                    if (files.length === 0) {
-                        filesDiv.innerHTML += "<p>No files available.</p>";
-                    } else {
-                        const fileCards = await Promise.all(files.map(async file => {
-                            const filePath = `${folder}/${file}`; // Prepend folder name to file path
-                            const fileContent = await fetch(filePath)
-                                .then(res => res.ok ? res.text() : `Error response\n\nError code: ${res.status}\nMessage: ${res.statusText}`)
-                                .catch(() => "Failed to load content.");
-                            const preview = fileContent.substring(0, 1000); // Limit to 1000 characters
-                            return `
-                                <div class="card m-2 shadow">
-                                    <div class="card-body">
-                                        <h5 class="card-title fs-6">${file.replace(/%20/g, " ")}</h5>
-                                        <p class="card-text small">${preview}</p>
-                                    </div>
-                                </div>
-                            `;
-                        }));
-                        filesDiv.innerHTML += `<div class="d-flex flex-wrap">${fileCards.join("")}</div>`;
-                    }
-                }
+				async function displayFiles(folder, files) {
+					filesDiv.innerHTML = `<h2 class="text-center text-white bg-dark p-2">${folder}</h2>`;
+					if (files.length === 0) {
+						filesDiv.innerHTML += "<p>No files available.</p>";
+					} else {
+						const fileCards = await Promise.all(files.map(async (file) => {
+							const filePath = `${folder}/${file}`; // Prepend folder name to file path
+							const fileContent = await fetch(`${filePath}?t=${new Date().getTime()}`) // Cache-busting parameter
+								.then((res) =>
+									res.ok
+										? res.text()
+										: `Error response\n\nError code: ${res.status}\nMessage: ${res.statusText}`
+								)
+								.catch(() => "Failed to load content.");
+
+							// Use a Markdown parser (like marked.js) to convert Markdown to HTML with proper formatting
+							const preview =
+								typeof marked === "function"
+									? marked(fileContent.substring(0, 1000)) // Convert Markdown to HTML
+									: fileContent.substring(0, 1000).replace(/\n/g, "<br>"); // Fallback if marked.js is not available
+
+							return `
+								<div class="card m-2 shadow" style="width: 250px;"> <!-- Adjust width for better sizing -->
+									<div class="card-body">
+										<h5 class="card-title fs-6">${file.replace(/%20/g, " ")}</h5>
+										<div class="card-text small">${preview}</div>
+									</div>
+								</div>
+							`;
+						}));
+						filesDiv.innerHTML += `<div class="d-flex flex-wrap">${fileCards.join("")}</div>`;
+					}
+				}
+
             } catch (error) {
                 console.error("Error loading structure.json:", error);
             }

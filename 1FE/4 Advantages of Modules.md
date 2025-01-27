@@ -1,0 +1,4 @@
+- **Improved Maintainability**: Code is organized into smaller, reusable pieces.
+- **Encapsulation**: Each module has its own scope, reducing the risk of global variable conflicts.
+- **Standardized**: Works natively in modern browsers and supported by Node.js.
+- **Optimization**:  Static structure allows for better performance and tooling (e.g., tree shaking).

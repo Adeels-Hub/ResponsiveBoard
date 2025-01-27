@@ -1,5 +1,21 @@
 {
     ".git": [],
+    ".obsidian": [],
+    ".vs": [],
+    "1FE": [
+        "1 This related issues still relevant.md",
+        "2 This best practices.md",
+        "3 Problems solved by this.md",
+        "4 Advantages of Modules.md",
+        "5 ES Module.md",
+        "6 Why Was CommonJS Introduced.md",
+        "7 Array.map().md",
+        "8 Array.filter().md",
+        "9 Array.reduce().md",
+        "90 JSON.parse() and JSON.stringify().md",
+        "91 Object.keys() and Object.values().md",
+        "92 Core JavaScript Concepts.md"
+    ],
     "AKS": [
         "AKS is PaaS or IaaS.md",
         "AKS Samples.md",
@@ -20,5 +36,6 @@
         "Kafka vs Azure Cosmos DB.md",
         "Kafka vs Azure Event Hubs.md",
         "Kafka vs Azure Service Bus.md"
-    ]
+    ],
+    "QSheet": []
 }

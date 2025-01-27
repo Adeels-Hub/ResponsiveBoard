@@ -1,0 +1,4 @@
+- standardize how modules are structured and used in JavaScript
+- **Namespace pollution**: Multiple libraries or scripts overwriting the same global variable.
+- **Dependency management**: Developers had to manually ensure that scripts were loaded in the correct order.
+- Not needed for FE if u just have to support only modern browsers.
