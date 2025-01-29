@@ -2,34 +2,46 @@
     ".git": [],
     ".obsidian": [],
     ".vs": [],
-    "1FE": [
+    "1-JS": [
         "1 This related issues still relevant.md",
         "2 This best practices.md",
         "3 Problems solved by this.md",
         "4 Advantages of Modules.md",
         "5 ES Module.md",
         "6 Why Was CommonJS Introduced.md",
+        "61 return false vs event.prevent.md",
+        "62 Modules vs Packages.md",
         "7 Array.map().md",
+        "71 Deep Copy.md",
         "8 Array.filter().md",
         "9 Array.reduce().md",
         "90 JSON.parse() and JSON.stringify().md",
         "91 Object.keys() and Object.values().md",
-        "92 Core JavaScript Concepts.md"
+        "92CoreJavaScriptConcepts.md"
     ],
-    "AKS": [
-        "AKS is PaaS or IaaS.md",
-        "AKS Samples.md",
-        "Diagram Deployment on AKS Cluster.md"
+    "2-React": [
+        "11Basics.md",
+        "12Basics.md",
+        "2State Prop Hooks.md",
+        "3CSS.md",
+        "4Hooks.md",
+        "5When to use class vs function.md",
+        "6useMemo useCallback ReactMemo.md",
+        "7Redux and Context API.md",
+        "9 BootStrap vs Material UI.md"
     ],
-    "AWS": [
-        "index.html",
-        "index.md"
-    ],
-    "Cloud": [
-        "example1.md",
-        "example2.md"
+    "4-Net": [
+        "5-MicroServices.md",
+        "EF Core 8.md",
+        "new in 8.md",
+        "New in ASPNet Core.md",
+        "What is new in .Net 8.md"
     ],
     "css": [],
+    "DotNet": [
+        "New in .Net 6.md",
+        "New in .Net 8.md"
+    ],
     "Event Sourcing": [
         "Azure Event Sourcing.md",
         "Kafka vs Azure Blob Storage.md",
@@ -37,5 +49,15 @@
         "Kafka vs Azure Event Hubs.md",
         "Kafka vs Azure Service Bus.md"
     ],
-    "QSheet": []
+    "Prices": [],
+    "QSheet": [],
+    "zAKS": [
+        "AKS is PaaS or IaaS.md",
+        "AKS Samples.md",
+        "Diagram Deployment on AKS Cluster.md"
+    ],
+    "zAWS": [
+        "index.html",
+        "index.md"
+    ]
 }

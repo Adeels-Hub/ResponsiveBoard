@@ -1,5 +1,4 @@
-### 
-
+<a href="1-JS/92CoreJavaScriptConcepts.md" target="_blank" rel="noopener noreferrer"> Open in separate window</a> 
 1. **What are the different data types in JavaScript?**  
     **Answer**: JavaScript has the following data types:
     - Primitive: `String`, `Number`, `Boolean`, `Null`, `Undefined`, `Symbol`, `BigInt`.
@@ -235,3 +234,5 @@ CopyEdit
 
 30. **What is a callback function?**  
     **Answer**: A function passed as an argument to another function and executed later.
+
+    

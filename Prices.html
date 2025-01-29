@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Price Charts</title>
+    <script src="https://widgets.coingecko.com/gecko-coin-price-chart-widget.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #widget-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .widget-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 10px;
+            position: relative;
+        }
+        .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Crypto Price Charts</h2>
+    
+    <div id="widget-container"></div>
+
+    <script>
+        // Hidden variable containing predefined cryptocurrency IDs
+        const cryptoIds = [
+            "official-trump", "solana", "bitcoin", "ripple",
+            "ethereum", "dogecoin", "aleo", "1inch"
+        ];
+
+        function addWidget(cryptoId) {
+            if (!cryptoId) return;
+
+            const widgetContainer = document.getElementById('widget-container');
+
+            // Create a div to hold the widget
+            const widgetBox = document.createElement('div');
+            widgetBox.className = 'widget-box';
+
+            // Create remove button
+            const removeBtn = document.createElement('button');
+            removeBtn.innerText = 'X';
+            removeBtn.className = 'remove-btn';
+            removeBtn.onclick = () => widgetBox.remove();
+
+            // Create the widget element
+            const widget = document.createElement('gecko-coin-price-chart-widget');
+            widget.setAttribute('locale', 'en');
+            widget.setAttribute('outlined', 'true');
+            widget.setAttribute('coin-id', cryptoId);
+            widget.setAttribute('initial-currency', 'aud'); // Set currency to AUD
+
+            // Append elements
+            widgetBox.appendChild(removeBtn);
+            widgetBox.appendChild(widget);
+            widgetContainer.appendChild(widgetBox);
+        }
+
+        // Load widgets for predefined crypto IDs on page load
+        window.onload = function () {
+            cryptoIds.forEach(addWidget);
+        };
+    </script>
+
+</body>
+</html>

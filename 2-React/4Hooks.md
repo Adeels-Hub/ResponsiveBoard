@@ -1,0 +1,6 @@
+- The state hook allows us to add state to function components.
+- Hooks can only be called at the top level of components.
+- React updates state in an asynchronous manner, so updates are not applied immediately. Instead, they’re batched and applied at once after all event handlers have finished execution. Once the state is updated, React re-renders our component.
+- Avoid deeply nested state objects as they can be hard to update and maintain.
+- A pure function is one that always returns the same result given the same input. Pure functions should not modify objects outside of the function.
+- To keep state as minimal as possible, avoid redundant state variables that can be computed from existing variables.
