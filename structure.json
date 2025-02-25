@@ -22,8 +22,11 @@
     "2-React": [
         "11Basics.md",
         "12Basics.md",
+        "22 Why can't we modify props directly.md",
+        "23 How to update a prop via the parent.md",
         "2State Prop Hooks.md",
         "3CSS.md",
+        "41 All Hooks.md",
         "4Hooks.md",
         "5When to use class vs function.md",
         "6useMemo useCallback ReactMemo.md",
@@ -54,7 +57,12 @@
     "zAKS": [
         "AKS is PaaS or IaaS.md",
         "AKS Samples.md",
-        "Diagram Deployment on AKS Cluster.md"
+        "AppService and Azure function.md",
+        "Diagram Deployment on AKS Cluster.md",
+        "GPT AppService Plans for Functions.md",
+        "Put Api in Function.md",
+        "why run azure function in AppService.md",
+        "zConsumption Premium AppService.md"
     ],
     "zAWS": [
         "index.html",
