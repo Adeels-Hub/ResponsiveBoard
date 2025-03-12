@@ -1,0 +1,1 @@
+Starting from .NET 8, the order of exceptions in the resulting `AggregateException` of Tasks.WhenAll aligns with the chronological order of task failures

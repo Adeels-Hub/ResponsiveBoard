@@ -1,0 +1,2 @@
+- Identity Api end point: Not used if u r using external auth provider like Auth0
+- Bearer Token Authentication Handler: Generates tokens but auth0 generates token for u. You can validate Auth0 generated tokens.

@@ -2,6 +2,9 @@
     ".git": [],
     ".obsidian": [],
     ".vs": [],
+    "1 Shift": [
+        "What is Shift.md"
+    ],
     "1-JS": [
         "1 This related issues still relevant.md",
         "2 This best practices.md",
@@ -34,11 +37,26 @@
         "9 BootStrap vs Material UI.md"
     ],
     "4-Net": [
-        "5-MicroServices.md",
-        "EF Core 8.md",
-        "new in 8.md",
-        "New in ASPNet Core.md",
-        "What is new in .Net 8.md"
+        "1-What is new in .Net 8.md",
+        "2-new in 8.md",
+        "3-EF Core 8.md",
+        "4-New in ASPNet Core.md",
+        "5 - New in Authentication.md",
+        "6- New in Tasks.md",
+        "9- Tasks.WhenAll vs Wait All.md",
+        "Auth middleware vs policies.md",
+        "Task.Run vs Async Call.md"
+    ],
+    "Architecture": [
+        "1-MicroServices.md"
+    ],
+    "AWS": [
+        "1-API Gatway.md",
+        "2-Auth ApiGateway.md",
+        "3-ApiGateWay vs ALB.md",
+        "ELB - Elastic Load Balancer.md",
+        "IAM.md",
+        "NACL ResourceGroup.md"
     ],
     "css": [],
     "DotNet": [
@@ -63,9 +81,5 @@
         "Put Api in Function.md",
         "why run azure function in AppService.md",
         "zConsumption Premium AppService.md"
-    ],
-    "zAWS": [
-        "index.html",
-        "index.md"
     ]
 }
