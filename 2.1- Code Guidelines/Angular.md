@@ -1,0 +1,3 @@
+- **Angular's Official Style Guide:** Angular provides a comprehensive style guide that promotes best practices for developing Angular applications using TypeScript. It covers topics such as project structure, naming conventions, and coding standards to ensure consistency and maintainability across Angular projects.​
+    
+- **Microsoft's TypeScript Coding Guidelines:** Use only for NodeJs backend type script code.

@@ -1,0 +1,1 @@
+1- Business comes up with a strategy and create an initiative which is a group of 

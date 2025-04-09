@@ -1,0 +1,3 @@
+**React TypeScript Cheatsheet:** This resource provides best practices and patterns for using TypeScript with React. It includes examples and recommendations for typing components, hooks, and other React patterns, helping developers integrate TypeScript seamlessly into React projects.
+
+**Microsoft's TypeScript-React-Starter (Do not follow):** This GitHub repository offers a starter template for React applications using TypeScript, adhering to best practices and coding standards. Exploring this repository can provide practical insights into structuring and writing React applications with TypeScript.

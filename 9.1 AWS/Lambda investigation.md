@@ -1,0 +1,4 @@
+- **Check the Lambda Console** (first place to look).
+- Use **AWS CLI (`get-function` and `invoke`)**.
+- Look in **CloudTrail** (if execution fails at AWS level).
+- Check **X-Ray** if enabled.

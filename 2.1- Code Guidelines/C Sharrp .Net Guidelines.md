@@ -1,0 +1,3 @@
+https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions
+
+**Microsoft's Official C# Coding Conventions:** This comprehensive guide outlines best practices for writing clean and maintainable C# code. It covers topics such as indentation, naming conventions, and formatting. Key recommendations include using four spaces for indentation, aligning code consistently to enhance readability, and adopting the "Allman" style for braces, where each brace appears on its own line.

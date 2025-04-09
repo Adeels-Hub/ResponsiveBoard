@@ -1,0 +1,1 @@
+Cloud-native services in **AWS** are designed for scalability, resilience, and automation. These services are optimized for cloud environments, leveraging microservices, containers, serverless computing, and managed services. Below are key AWS cloud-native services categorized by functionality:

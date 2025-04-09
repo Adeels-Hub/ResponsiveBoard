@@ -1,3 +1,0 @@
-Shift Financial Pty Ltd, formerly known as GetCapital, is an Australian company that provides a range of financial solutions, including working capital facilities, equipment finance, and trade payment solutions, to support Australian businesses. They appears to have an office in India as well where Salesforce development, and engineering.
-
-I have also read from your advertisement that at Shift they privide a collabortaive culture where one can nuild his carreer.

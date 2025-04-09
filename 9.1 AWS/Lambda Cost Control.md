@@ -1,0 +1,4 @@
+- **Concurrency Limits** (to cap execution count).
+- **AWS Budgets** (to monitor and get alerts).
+- **Compute Savings Plans** (for cost optimization).
+- **Cost Explorer & Free Tier** (to analyze and reduce spending).

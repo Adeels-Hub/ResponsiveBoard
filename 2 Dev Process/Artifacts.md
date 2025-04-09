@@ -1,0 +1,6 @@
+- **Theme:** High-level strategic objectives or focus areas that guide the organization's vision and goals.
+- **Initiative:** A large effort that supports one or more themes, encompassing multiple epics and aimed at achieving a strategic goal.
+- **Epic:** A significant piece of work that delivers value and can be broken down into multiple features or user stories.
+- **Feature:** A specific piece of functionality that delivers value to the user, often made up of several user stories.
+- **User Story:** A small, manageable unit of work describing a requirement from the user’s perspective.
+- **Task:** A detailed, actionable step required to complete a user story, usually performed by an individual team member.

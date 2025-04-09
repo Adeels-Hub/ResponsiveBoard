@@ -2,9 +2,6 @@
     ".git": [],
     ".obsidian": [],
     ".vs": [],
-    "1 Shift": [
-        "What is Shift.md"
-    ],
     "1-JS": [
         "1 This related issues still relevant.md",
         "2 This best practices.md",
@@ -22,7 +19,31 @@
         "91 Object.keys() and Object.values().md",
         "92CoreJavaScriptConcepts.md"
     ],
-    "2-React": [
+    "2 Dev Process": [
+        "1- Scrum Ceremonies.md",
+        "2- Retrospective.md",
+        "3- Issue with SCRUM.md",
+        "Artifacts.md",
+        "Estikmation.md",
+        "Safe.md",
+        "Untitled.md"
+    ],
+    "2.1- Code Guidelines": [
+        "Angular.md",
+        "C Sharrp .Net Guidelines.md",
+        "React.md",
+        "Sonar Cube.md"
+    ],
+    "2.3 Analysis": [
+        "Analysis Flow.md",
+        "Data Modeling.md",
+        "Data Quality Audit - 1.md",
+        "Data Quality Audit - 2.md",
+        "DDD analysis.md",
+        "Functional Analysis.md",
+        "UseCase and UserStory.md"
+    ],
+    "3-React": [
         "11Basics.md",
         "12Basics.md",
         "22 Why can't we modify props directly.md",
@@ -33,8 +54,9 @@
         "4Hooks.md",
         "5When to use class vs function.md",
         "6useMemo useCallback ReactMemo.md",
-        "7Redux and Context API.md",
-        "9 BootStrap vs Material UI.md"
+        "7 Hook useReducer.md",
+        "9 BootStrap vs Material UI.md",
+        "9Redux and Context API.md"
     ],
     "4-Net": [
         "1-What is new in .Net 8.md",
@@ -47,16 +69,26 @@
         "Auth middleware vs policies.md",
         "Task.Run vs Async Call.md"
     ],
-    "Architecture": [
-        "1-MicroServices.md"
-    ],
-    "AWS": [
+    "9.1 AWS": [
         "1-API Gatway.md",
         "2-Auth ApiGateway.md",
         "3-ApiGateWay vs ALB.md",
+        "API Gateway cant Do.md",
+        "APIGateWayCant Do  WAF.md",
         "ELB - Elastic Load Balancer.md",
         "IAM.md",
-        "NACL ResourceGroup.md"
+        "Lambda Cost Control.md",
+        "Lambda investigation.md",
+        "Lambda Timeout.md",
+        "NACL ResourceGroup.md",
+        "Z- Cloud Native.md",
+        "Z91- Cloud Native.md",
+        "Z92- Cloud Native.md",
+        "Z94- Cloud Native.md",
+        "Z95- Cloud Native.md"
+    ],
+    "Architecture": [
+        "1-MicroServices.md"
     ],
     "css": [],
     "DotNet": [
@@ -71,15 +103,8 @@
         "Kafka vs Azure Service Bus.md"
     ],
     "Prices": [],
-    "QSheet": [],
-    "zAKS": [
-        "AKS is PaaS or IaaS.md",
-        "AKS Samples.md",
-        "AppService and Azure function.md",
-        "Diagram Deployment on AKS Cluster.md",
-        "GPT AppService Plans for Functions.md",
-        "Put Api in Function.md",
-        "why run azure function in AppService.md",
-        "zConsumption Premium AppService.md"
+    "Process": [
+        "Diagram Tools.md",
+        "SMART Requirements.md"
     ]
 }

@@ -23,6 +23,6 @@ body {
 .card-text {
     white-space: pre-wrap; /* Preserve line breaks and indentation */
     word-wrap: break-word; /* Prevent long words from breaking layout */
-    font-family: "Courier New", Courier, monospace; /* Optional: Use a monospaced font */
+    font-family: "Verdana", Verdana, monospace; /* Optional: Use a monospaced font */
 }
 
