@@ -91,6 +91,9 @@
         "1-MicroServices.md"
     ],
     "css": [],
+    "dashboard": [
+        "index.html"
+    ],
     "DotNet": [
         "New in .Net 6.md",
         "New in .Net 8.md"

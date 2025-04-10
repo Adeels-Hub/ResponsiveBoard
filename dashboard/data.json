@@ -1,0 +1,78 @@
+{
+  "Sections": [
+    {
+      "SectionName": "Knowledge",
+      "Bookmarks": [
+        {
+          "URL": "https://adeels-hub.github.io/ResponsiveBoard/Home.html",
+          "URLName": "Responsive board"
+       },
+       {
+          "URL": "https://adeels-hub.github.io/Notes/",
+          "URLName": "Knowledge Base"
+        }
+		
+      ],
+      "SubSections": [
+
+      ]
+    },
+    {
+      "SectionName": "Cloud",
+  "Bookmarks": [
+    {
+      "URL": "https://adeels-hub.github.io/FastNotes/site/search.html",
+      "URLName": "Cloud Service Comparison"
+    },
+{
+      "URL": "https://adeels-hub.github.io/Notes/Cloud/Landing%20Zone/",
+      "URLName": "Azure AWS Landing Zone"
+    }
+
+  ],
+      "SubSections": []
+    },
+    {
+      "SectionName": "Crypto",
+  "Bookmarks": [
+    {
+      "URL": "https://adeels-hub.github.io/ResponsiveBoard/Prices.html",
+      "URLName": "Crypto Prices"
+    }
+
+
+  ],
+      "SubSections": []
+    },
+    {
+      "SectionName": "Finanace",
+  "Bookmarks": [
+{
+      "URL": "https://x.com/KobeissiLetter?t=liwIaYJ4cedlMP97mXkuyw&s=35",
+      "URLName": "Kobeissi Letter"
+    }
+
+  ],
+      "SubSections": []
+    },
+    {
+      "SectionName": "My Work",
+  "Bookmarks": [
+{
+      "URL": "https://github.com/Adeels-Hub?tab=repositories",
+      "URLName": "My Repo"
+    },
+    {
+      "URL": "https://github.com/Adeels-Hub/IncidentManager",
+      "URLName": "Incident Manager React Repo"
+    },
+    {
+      "URL": "https://adeels-hub.github.io/IncidentManager/",
+      "URLName": "Incident Manager React Online"
+    }    
+
+  ],
+      "SubSections": []
+    }               
+  ]
+}

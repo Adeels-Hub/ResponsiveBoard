@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Cards</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 1rem;
+      background-color: #1e1e1e; /* Dashboard background */
+      color: #ffffff;
+      font-family: system-ui, sans-serif;
+    }
+  
+    .dashboard {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: flex-start;
+    }
+  
+    .card {
+      background-color: #0d1117; /* Card background */
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+      width: 300px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .card h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.1rem;
+      color: #ffffff;
+    }
+  
+    .bookmarks, .subsections {
+      margin-top: 0.5rem;
+    }
+  
+    .bookmark a {
+      display: block;
+      text-decoration: none;
+      color: #ffffff; /* Always white */
+      background-color: #21262d;
+      margin-bottom: 0.3rem;
+      padding: 0.4rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+  
+    .bookmark a:hover {
+      background-color: #30363d;
+    }
+  
+    .bookmark a:visited {
+      color: #ffffff; /* Still white even after click */
+    }
+  
+    .subsection {
+      margin-top: 1rem;
+      margin-left: 0.5rem;
+      padding-left: 0.5rem;
+      border-left: 2px solid #30363d;
+    }
+  
+    .subsection h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1rem;
+      color: #dcdcdc;
+    }
+  </style>
+  
+  
+</head>
+<body>
+  <div class="dashboard" id="dashboard"></div>
+
+  <script>
+    async function loadJSON() {
+      const response = await fetch('data.json');
+      const data = await response.json();
+      renderSections(data.Sections, document.getElementById('dashboard'));
+    }
+
+    function renderSections(sections, container) {
+      sections.forEach(section => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const title = document.createElement('h2');
+        title.textContent = section.SectionName;
+        card.appendChild(title);
+
+        if (section.Bookmarks?.length) {
+          const bookmarksDiv = document.createElement('div');
+          bookmarksDiv.className = 'bookmarks';
+          section.Bookmarks.forEach(bookmark => {
+            const link = document.createElement('a');
+            link.href = bookmark.URL;
+            link.target = '_blank';
+            link.textContent = bookmark.URLName;
+            const wrapper = document.createElement('div');
+            wrapper.className = 'bookmark';
+            wrapper.appendChild(link);
+            bookmarksDiv.appendChild(wrapper);
+          });
+          card.appendChild(bookmarksDiv);
+        }
+
+        if (section.SubSections?.length) {
+          const subsectionsDiv = document.createElement('div');
+          subsectionsDiv.className = 'subsections';
+          section.SubSections.forEach(sub => {
+            const subDiv = document.createElement('div');
+            subDiv.className = 'subsection';
+
+            const subTitle = document.createElement('h3');
+            subTitle.textContent = sub.SectionName;
+            subDiv.appendChild(subTitle);
+
+            if (sub.Bookmarks?.length) {
+              sub.Bookmarks.forEach(bookmark => {
+                const link = document.createElement('a');
+                link.href = bookmark.URL;
+                link.target = '_blank';
+                link.textContent = bookmark.URLName;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'bookmark';
+                wrapper.appendChild(link);
+                subDiv.appendChild(wrapper);
+              });
+            }
+
+            subsectionsDiv.appendChild(subDiv);
+          });
+          card.appendChild(subsectionsDiv);
+        }
+
+        container.appendChild(card);
+      });
+    }
+
+    loadJSON();
+  </script>
+</body>
+</html>
