@@ -1,7 +1,4 @@
 {
-    ".git": [],
-    ".obsidian": [],
-    ".vs": [],
     "1-JS": [
         "1 This related issues still relevant.md",
         "2 This best practices.md",
@@ -17,7 +14,8 @@
         "9 Array.reduce().md",
         "90 JSON.parse() and JSON.stringify().md",
         "91 Object.keys() and Object.values().md",
-        "92CoreJavaScriptConcepts.md"
+        "92CoreJavaScriptConcepts.md",
+        "93- Ways to create objects.md"
     ],
     "2 Dev Process": [
         "1- Scrum Ceremonies.md",
@@ -56,7 +54,8 @@
         "6useMemo useCallback ReactMemo.md",
         "7 Hook useReducer.md",
         "9 BootStrap vs Material UI.md",
-        "9Redux and Context API.md"
+        "9Redux and Context API.md",
+        "Hooks Categories.md"
     ],
     "4-Net": [
         "1-What is new in .Net 8.md",
@@ -90,10 +89,6 @@
     "Architecture": [
         "1-MicroServices.md"
     ],
-    "css": [],
-    "dashboard": [
-        "index.html"
-    ],
     "DotNet": [
         "New in .Net 6.md",
         "New in .Net 8.md"
@@ -105,7 +100,6 @@
         "Kafka vs Azure Event Hubs.md",
         "Kafka vs Azure Service Bus.md"
     ],
-    "Prices": [],
     "Process": [
         "Diagram Tools.md",
         "SMART Requirements.md"

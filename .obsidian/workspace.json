@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "3-React/9 BootStrap vs Material UI.md",
+                "file": "3-React/Hooks Categories.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "9 BootStrap vs Material UI"
+              "title": "Hooks Categories"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "path:debia",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -163,13 +163,21 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "347e2f27075c7542",
+  "active": "b37c6acaf93e63fb",
   "lastOpenFiles": [
-    "3-React/9Redux and Context API.md",
-    "3-React/7 Hook useReducer.md",
-    "3-React/4Hooks.md",
-    "3-React/23 How to update a prop via the parent.md",
+    "dashboard/ReactHooks.pdf",
+    "3-React/ReactHooks.pdf",
     "3-React/41 All Hooks.md",
+    "3-React/Hooks Categories.md",
+    "3-React/22 Why can't we modify props directly.md",
+    "3-React/4Hooks.md",
+    "1-JS/93- Ways to create objects.md",
+    "3-React/23 How to update a prop via the parent.md",
+    "3-React/93- Ways to create.md",
+    "3-React/7 Hook useReducer.md",
+    "3-React/12Basics.md",
+    "3-React/9 BootStrap vs Material UI.md",
+    "3-React/9Redux and Context API.md",
     "9.1 AWS/API Gateway cant Do.md",
     "1-JS/92CoreJavaScriptConcepts.md",
     "1-JS/91 Object.keys() and Object.values().md",
@@ -184,14 +192,7 @@
     "1-JS/5 ES Module.md",
     "1-JS/4 Advantages of Modules.md",
     "1-JS/3 Problems solved by this.md",
-    "1-JS/2 This best practices.md",
-    "1-JS/1 This related issues still relevant.md",
     "1-JS",
-    "3-React/9 BootStrap vs Material UI.md",
-    "3-React/6useMemo useCallback ReactMemo.md",
-    "3-React/5When to use class vs function.md",
-    "3-React/3CSS.md",
-    "3-React/2State Prop Hooks.md",
     "3-React",
     "2.3 Analysis",
     "2.1- Code Guidelines",
@@ -202,7 +203,6 @@
     "AKS",
     "Pasted image 20250312113552.png",
     "Architecture",
-    "1 ICare",
     "Pasted image 20250220163911.png",
     "Pasted image 20250220163447.png",
     "Pasted image 20250220162951.png",
