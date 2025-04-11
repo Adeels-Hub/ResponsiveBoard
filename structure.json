@@ -89,6 +89,13 @@
     "Architecture": [
         "1-MicroServices.md"
     ],
+    "C Sharp Coding": [
+        "Controller.md",
+        "Create solution and project.md",
+        "Programcs2.md",
+        "Programscs1.md",
+        "Test Proj.md"
+    ],
     "DotNet": [
         "New in .Net 6.md",
         "New in .Net 8.md"
