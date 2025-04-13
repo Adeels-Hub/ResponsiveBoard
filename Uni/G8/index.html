@@ -39,11 +39,27 @@
       color: #000;
     }
 
-    #message {
-      text-align: center;
-      color: red;
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
+    .message-box {
+      position: relative;
+      background-color: #333;
+      color: white;
+      border: 1px solid #888;
+      padding: 10px 40px 10px 15px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .close-btn {
+      position: absolute;
+      right: 10px;
+      top: 7px;
+      cursor: pointer;
+      color: #ccc;
+      font-size: 16px;
+      font-weight: bold;
     }
 
     #tree-container {
@@ -103,7 +119,7 @@
   <input type="number" id="atarFilter" placeholder="80+" min="80">
 </div>
 
-<div id="message"></div>
+<div id="message-container"></div>
 <div id="tree-container">Loading...</div>
 
 <script>
@@ -126,7 +142,7 @@
     container.appendChild(buildTree(jsonData));
   }
 
-  function buildTree(obj, filter = {}, parentKey = '') {
+  function buildTree(obj, filter = {}, parentKey = '', matchCounter = { count: 0 }) {
     const ul = document.createElement('ul');
 
     for (const key in obj) {
@@ -137,7 +153,7 @@
         li.classList.add('node', 'collapsed');
         li.textContent = key;
 
-        const childTree = buildTree(value, filter, key);
+        const childTree = buildTree(value, filter, key, matchCounter);
         if (childTree.children.length > 0) {
           li.appendChild(childTree);
           li.addEventListener('click', function (e) {
@@ -161,11 +177,11 @@
         }
       }
 
-      // Expand course node if it matches filter
       if (parentKey === "Courses" && matchesFilter(key, obj[key], filter)) {
         li.classList.add('expanded');
         li.classList.remove('collapsed');
         ul.dataset.shouldExpand = "true";
+        matchCounter.count += 1;
       }
 
       ul.appendChild(li);
@@ -189,15 +205,15 @@
   function updateTreeWithFilters() {
     const courseInput = document.getElementById('courseFilter').value.trim();
     const atarInputRaw = document.getElementById('atarFilter').value.trim();
-    const message = document.getElementById('message');
+    const messageBox = document.getElementById('message-container');
     let atarInput = parseFloat(atarInputRaw);
-    message.textContent = '';
+    messageBox.innerHTML = '';
 
     if (atarInputRaw && (isNaN(atarInput) || atarInputRaw === '')) {
       atarInput = null;
     } else if (atarInput < 80) {
       atarInput = 80;
-      message.textContent = 'Minimum ATAR adjusted to 80.';
+      showMessage("Minimum ATAR adjusted to 80.");
     }
 
     const filter = {
@@ -207,8 +223,37 @@
 
     const container = document.getElementById('tree-container');
     container.innerHTML = '';
-    container.appendChild(buildTree(jsonData, filter));
+
+    const matchCounter = { count: 0 };
+    const tree = buildTree(jsonData, filter, '', matchCounter);
+    container.appendChild(tree);
+
+    if (matchCounter.count === 0) {
+      showMessage("No matching courses found.");
+    } else {
+      showMessage(`${matchCounter.count} course(s) matched your criteria.`);
+    }
   }
+
+  function showMessage(msg) {
+  const container = document.getElementById('message-container');
+  container.innerHTML = ''; // Clear previous messages
+
+  const msgBox = document.createElement('div');
+  msgBox.classList.add('message-box');
+  msgBox.textContent = msg;
+
+  const closeBtn = document.createElement('span');
+  closeBtn.classList.add('close-btn');
+  closeBtn.textContent = '×';
+
+  closeBtn.addEventListener('click', () => {
+    msgBox.remove();
+  });
+
+  msgBox.appendChild(closeBtn);
+  container.appendChild(msgBox);
+}
 
   document.getElementById('courseFilter').addEventListener('blur', updateTreeWithFilters);
   document.getElementById('atarFilter').addEventListener('blur', updateTreeWithFilters);
