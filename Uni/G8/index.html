@@ -54,11 +54,17 @@
     li.collapsed > ul {
       display: none;
     }
+
+    a {
+      color: blue;
+      text-decoration: underline;
+      word-break: break-all;
+    }
   </style>
 </head>
 <body>
 
-<h2>Universities ATAR Data</h2>
+<h2>Go8 Universities Explorer</h2>
 <div id="tree-container">Loading...</div>
 
 <script>
@@ -92,7 +98,12 @@
         });
         li.appendChild(buildTree(value));
       } else {
-        li.textContent = `${key}: ${value}`;
+        if (typeof value === 'string' && value.startsWith('http')) {
+          // Render clickable link
+          li.innerHTML = `<strong>${key}:</strong> <a href="${value}" target="_blank" rel="noopener noreferrer">${value}</a>`;
+        } else {
+          li.textContent = `${key}: ${value}`;
+        }
       }
 
       ul.appendChild(li);
