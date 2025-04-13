@@ -2,54 +2,131 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Go8 University Data Viewer</title>
+  <title>Go8 Explorer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 20px;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 1rem;
+      background: #1e1e1e;
+      color: #f0f0f0;
     }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .controls {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"], input[type="number"] {
+      padding: 5px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      color: #000;
+    }
+
+    #message {
+      text-align: center;
+      color: red;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    #tree-container {
+      background: #111;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
     ul {
-      list-style-type: none;
-      padding-left: 20px;
+      list-style: none;
+      padding-left: 1.2rem;
     }
+
     li {
+      position: relative;
+      padding: 4px 0;
+      line-height: 1.4;
+      font-size: 0.95rem;
       cursor: pointer;
+      word-wrap: break-word;
     }
-    .collapsed > ul {
+
+    li.node::before {
+      content: "▶";
+      font-size: 1rem;
+      margin-right: 8px;
+      display: inline-block;
+      transform: rotate(0deg);
+      transition: transform 0.2s ease;
+    }
+
+    li.expanded::before {
+      content: "▼";
+    }
+
+    li.collapsed > ul {
       display: none;
     }
-    .node::before {
-      content: "▶ ";
-      display: inline-block;
-      margin-right: 4px;
-      color: #888;
-    }
-    .expanded::before {
-      content: "▼ ";
+
+    a {
+      color: #00bfff;
+      text-decoration: underline;
+      word-break: break-word;
     }
   </style>
 </head>
 <body>
 
 <h2>Go8 Universities Explorer</h2>
+
+<div class="controls">
+  <label for="courseFilter">Name of Course:</label>
+  <input type="text" id="courseFilter" placeholder="e.g. Medicine">
+
+  <label for="atarFilter">Min ATAR:</label>
+  <input type="number" id="atarFilter" placeholder="80+" min="80">
+</div>
+
+<div id="message"></div>
 <div id="tree-container">Loading...</div>
 
 <script>
+  let jsonData;
+
   async function fetchAndRenderJSON() {
     try {
-      const response = await fetch('ogo8_data.json');
-      const data = await response.json();
-      const treeContainer = document.getElementById('tree-container');
-      treeContainer.innerHTML = '';
-      treeContainer.appendChild(buildTree(data));
+      const response = await fetch('go8_data.json');
+      jsonData = await response.json();
+      renderTree();
     } catch (e) {
-      document.getElementById('tree-container').innerText = 'Failed to load JSON file.';
+      document.getElementById('tree-container').textContent = 'Failed to load JSON.';
       console.error(e);
     }
   }
 
-  function buildTree(obj) {
+  function renderTree() {
+    const container = document.getElementById('tree-container');
+    container.innerHTML = '';
+    container.appendChild(buildTree(jsonData));
+  }
+
+  function buildTree(obj, filter = {}, parentKey = '') {
     const ul = document.createElement('ul');
 
     for (const key in obj) {
@@ -59,14 +136,36 @@
       if (typeof value === 'object' && value !== null) {
         li.classList.add('node', 'collapsed');
         li.textContent = key;
-        li.addEventListener('click', function (e) {
-          e.stopPropagation();
-          li.classList.toggle('expanded');
-          li.classList.toggle('collapsed');
-        });
-        li.appendChild(buildTree(value));
+
+        const childTree = buildTree(value, filter, key);
+        if (childTree.children.length > 0) {
+          li.appendChild(childTree);
+          li.addEventListener('click', function (e) {
+            e.stopPropagation();
+            li.classList.toggle('expanded');
+            li.classList.toggle('collapsed');
+          });
+
+          if (childTree.dataset.shouldExpand === "true") {
+            li.classList.add('expanded');
+            li.classList.remove('collapsed');
+            ul.dataset.shouldExpand = "true";
+          }
+        }
+
       } else {
-        li.textContent = `${key}: ${value}`;
+        if (typeof value === 'string' && value.startsWith('http')) {
+          li.innerHTML = `<strong>${key}:</strong> <a href="${value}" target="_blank" rel="noopener noreferrer">${value}</a>`;
+        } else {
+          li.textContent = `${key}: ${value}`;
+        }
+      }
+
+      // Expand course node if it matches filter
+      if (parentKey === "Courses" && matchesFilter(key, obj[key], filter)) {
+        li.classList.add('expanded');
+        li.classList.remove('collapsed');
+        ul.dataset.shouldExpand = "true";
       }
 
       ul.appendChild(li);
@@ -74,6 +173,45 @@
 
     return ul;
   }
+
+  function matchesFilter(courseName, courseData, filter) {
+    const name = courseName.trim().toLowerCase();
+    const targetName = filter.course?.trim().toLowerCase() || "";
+    const atar = courseData.Minimum_ATAR ?? courseData.Guaranteed_ATAR ?? 0;
+    const minAtar = filter.atar ?? 0;
+
+    const nameMatch = !targetName || name.includes(targetName);
+    const atarMatch = !minAtar || atar >= minAtar;
+
+    return nameMatch && atarMatch;
+  }
+
+  function updateTreeWithFilters() {
+    const courseInput = document.getElementById('courseFilter').value.trim();
+    const atarInputRaw = document.getElementById('atarFilter').value.trim();
+    const message = document.getElementById('message');
+    let atarInput = parseFloat(atarInputRaw);
+    message.textContent = '';
+
+    if (atarInputRaw && (isNaN(atarInput) || atarInputRaw === '')) {
+      atarInput = null;
+    } else if (atarInput < 80) {
+      atarInput = 80;
+      message.textContent = 'Minimum ATAR adjusted to 80.';
+    }
+
+    const filter = {
+      course: courseInput,
+      atar: atarInput
+    };
+
+    const container = document.getElementById('tree-container');
+    container.innerHTML = '';
+    container.appendChild(buildTree(jsonData, filter));
+  }
+
+  document.getElementById('courseFilter').addEventListener('blur', updateTreeWithFilters);
+  document.getElementById('atarFilter').addEventListener('blur', updateTreeWithFilters);
 
   fetchAndRenderJSON();
 </script>
