@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Go8 Explorer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 1rem;
+      background: #f0f0f0;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    #tree-container {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 1.2rem;
+    }
+
+    li {
+      position: relative;
+      padding: 4px 0;
+      line-height: 1.4;
+      font-size: 0.95rem;
+      cursor: pointer;
+      word-wrap: break-word;
+    }
+
+    li.node::before {
+      content: "▶";
+      font-size: 1rem;
+      margin-right: 8px;
+      display: inline-block;
+      transform: rotate(0deg);
+      transition: transform 0.2s ease;
+    }
+
+    li.expanded::before {
+      content: "▼";
+    }
+
+    li.collapsed > ul {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Universities ATAR Data</h2>
+<div id="tree-container">Loading...</div>
+
+<script>
+  async function fetchAndRenderJSON() {
+    try {
+      const response = await fetch('go8_data.json');
+      const data = await response.json();
+      const treeContainer = document.getElementById('tree-container');
+      treeContainer.innerHTML = '';
+      treeContainer.appendChild(buildTree(data));
+    } catch (e) {
+      document.getElementById('tree-container').textContent = 'Failed to load JSON.';
+      console.error(e);
+    }
+  }
+
+  function buildTree(obj) {
+    const ul = document.createElement('ul');
+
+    for (const key in obj) {
+      const li = document.createElement('li');
+      const value = obj[key];
+
+      if (typeof value === 'object' && value !== null) {
+        li.classList.add('node', 'collapsed');
+        li.textContent = key;
+        li.addEventListener('click', function (e) {
+          e.stopPropagation();
+          li.classList.toggle('expanded');
+          li.classList.toggle('collapsed');
+        });
+        li.appendChild(buildTree(value));
+      } else {
+        li.textContent = `${key}: ${value}`;
+      }
+
+      ul.appendChild(li);
+    }
+
+    return ul;
+  }
+
+  fetchAndRenderJSON();
+</script>
+
+</body>
+</html>

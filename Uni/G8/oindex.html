@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Go8 University Data Viewer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+    ul {
+      list-style-type: none;
+      padding-left: 20px;
+    }
+    li {
+      cursor: pointer;
+    }
+    .collapsed > ul {
+      display: none;
+    }
+    .node::before {
+      content: "▶ ";
+      display: inline-block;
+      margin-right: 4px;
+      color: #888;
+    }
+    .expanded::before {
+      content: "▼ ";
+    }
+  </style>
+</head>
+<body>
+
+<h2>Go8 Universities Explorer</h2>
+<div id="tree-container">Loading...</div>
+
+<script>
+  async function fetchAndRenderJSON() {
+    try {
+      const response = await fetch('ogo8_data.json');
+      const data = await response.json();
+      const treeContainer = document.getElementById('tree-container');
+      treeContainer.innerHTML = '';
+      treeContainer.appendChild(buildTree(data));
+    } catch (e) {
+      document.getElementById('tree-container').innerText = 'Failed to load JSON file.';
+      console.error(e);
+    }
+  }
+
+  function buildTree(obj) {
+    const ul = document.createElement('ul');
+
+    for (const key in obj) {
+      const li = document.createElement('li');
+      const value = obj[key];
+
+      if (typeof value === 'object' && value !== null) {
+        li.classList.add('node', 'collapsed');
+        li.textContent = key;
+        li.addEventListener('click', function (e) {
+          e.stopPropagation();
+          li.classList.toggle('expanded');
+          li.classList.toggle('collapsed');
+        });
+        li.appendChild(buildTree(value));
+      } else {
+        li.textContent = `${key}: ${value}`;
+      }
+
+      ul.appendChild(li);
+    }
+
+    return ul;
+  }
+
+  fetchAndRenderJSON();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+{
+    "Group of Eight (Go8) Universities Admission Data":{
+  "University of Sydney": {
+    "Campuses": [
+      "Camperdown/Darlington",
+      "Camden",
+      "Mallett Street",
+      "Sydney College of the Arts",
+      "Sydney Conservatorium of Music",
+      "Westmead",
+      "One Tree Island Research Station"
+    ],
+    "Courses": {
+      "Bachelor of Arts": {
+        "Guaranteed_ATAR": 80.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/guaranteed-entry.html"
+      },
+      "Bachelor of Commerce": {
+        "Guaranteed_ATAR": 93.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/guaranteed-entry.html"
+      },
+      "Bachelor of Science": {
+        "Guaranteed_ATAR": 80.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/guaranteed-entry.html"
+      }
+    }
+  },
+  "University of Melbourne": {
+    "Campuses": [
+      "Parkville",
+      "Southbank",
+      "Burnley",
+      "Creswick",
+      "Dookie",
+      "Shepparton",
+      "Werribee"
+    ],
+    "Courses": {
+      "Bachelor of Arts": {
+        "Minimum_ATAR": 72.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://study.unimelb.edu.au/find/courses/undergraduate/bachelor-of-arts/"
+      },
+      "Bachelor of Commerce": {
+        "Minimum_ATAR": 78.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://study.unimelb.edu.au/find/courses/undergraduate/bachelor-of-commerce/"
+      },
+      "Bachelor of Biomedicine": {
+        "Minimum_ATAR": 86.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://study.unimelb.edu.au/find/courses/undergraduate/bachelor-of-biomedicine/"
+      }
+    }
+  },
+  "University of Queensland": {
+    "Campuses": [
+      "St Lucia",
+      "Gatton",
+      "Herston",
+      "Dutton Park"
+    ],
+    "Courses": {
+      "Bachelor of Business Management": {
+        "Minimum_ATAR": 74.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://future-students.uq.edu.au/study/programs/bachelor-business-management-2026"
+      },
+      "Bachelor of Engineering (Honours)": {
+        "Minimum_ATAR": 84.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://future-students.uq.edu.au/study/programs/bachelor-engineering-honours-2351"
+      },
+      "Bachelor of Science": {
+        "Minimum_ATAR": 80.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://future-students.uq.edu.au/study/programs/bachelor-science-2030"
+      }
+    }
+  },
+  "Australian National University": {
+    "Campuses": [
+      "Acton",
+      "Kioloa Coastal Campus",
+      "Mount Stromlo Observatory",
+      "North Australian Research Unit",
+      "Siding Spring Observatory"
+    ],
+    "Courses": {
+      "Bachelor of Arts": {
+        "Minimum_ATAR": 80.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://programsandcourses.anu.edu.au/program/BARTS"
+      },
+      "Bachelor of Science": {
+        "Minimum_ATAR": 85.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://programsandcourses.anu.edu.au/program/BSC"
+      },
+      "Bachelor of Laws (Honours)": {
+        "Minimum_ATAR": 98.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://programsandcourses.anu.edu.au/program/LLB"
+      }
+    }
+  },
+  "Monash University": {
+    "Campuses": [
+      "Clayton",
+      "Caulfield",
+      "Peninsula",
+      "Parkville",
+      "Law Chambers",
+      "750 Collins Street",
+      "Malaysia",
+      "Indonesia",
+      "India",
+      "Italy"
+    ],
+    "Courses": {
+      "Bachelor of Arts": {
+        "Minimum_ATAR": 70.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://www.monash.edu/study/courses/find-a-course/2025/arts-a2000"
+      },
+      "Bachelor of Commerce": {
+        "Minimum_ATAR": 75.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://www.monash.edu/study/courses/find-a-course/2025/commerce-b2001"
+      },
+      "Bachelor of Laws (Honours)": {
+        "Minimum_ATAR": 85.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://www.monash.edu/study/courses/find-a-course/2025/laws-honours-l3001"
+      }
+    }
+  },
+  "University of New South Wales": {
+    "Campuses": [
+      "Kensington",
+      "Paddington",
+      "UNSW Canberra"
+    ],
+    "Courses": {
+      "Bachelor of Arts": {
+        "Minimum_ATAR": 80.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-arts"
+      },
+      "Bachelor of Commerce": {
+        "Minimum_ATAR": 93.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-commerce"
+      },
+      "Bachelor of Engineering (Honours)": {
+        "Minimum_ATAR": 90.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours"
+      }
+    }
+  },
+  "University of Western Australia": {
+    "Campuses": [
+      "Crawley",
+      "Claremont",
+      "Albany",
+      "QEII Medical Centre",
+      "Shenton Park"
+    ],
+    "Courses": {
+      "Bachelor of Arts": {
+        "Minimum_ATAR": 75.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://www.uwa.edu.au/study/courses/bachelor-of-arts"
+      },
+      "Bachelor of Commerce": {
+        "Minimum_ATAR": 80.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://www.uwa.edu.au/study/courses/bachelor-of-commerce"
+      },
+      "Bachelor of Science": {
+        "Minimum_ATAR": 80.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://www.uwa.edu.au/study/courses/bachelor-of-science"
+      }
+    }
+  },
+  "University of Adelaide": {
+    "Campuses": [
+      "North Terrace",
+      "Waite",
+      "Roseworthy",
+      "Melbourne"
+    ],
+    "Courses": {
+      "Bachelor of Arts": {
+        "Minimum_ATAR": 70.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://www.adelaide.edu.au/degree-finder/arts_barts.html"
+      },
+      "Bachelor of Commerce": {
+        "Minimum_ATAR": 75.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://www.adelaide.edu.au/degree-finder/bcom_bcom.html"
+      },
+      "Bachelor of Science": {
+        "Minimum_ATAR": 75.0,
+        "Guaranteed_ATAR_year": 2025,
+        "Source_URL": "https://www.adelaide.edu.au/degree-finder/bsc_bsc.html"
+      }
+    }
+  }
+}
+}
