@@ -96,6 +96,11 @@
         "Programscs1.md",
         "Test Proj.md"
     ],
+    "Databases": [
+        "1- NoSQL VS SQL.md",
+        "2.1- Amazon NoSQL DB Use Cases.md",
+        "2.2- Amazon NoSQL DB Use Cases.md"
+    ],
     "DotNet": [
         "New in .Net 6.md",
         "New in .Net 8.md"

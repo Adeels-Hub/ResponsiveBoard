@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "C Sharp Coding/Programcs2.md",
+                "file": "Databases/2.2- Amazon NoSQL DB Use Cases.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Programcs2"
+              "title": "2.2- Amazon NoSQL DB Use Cases"
             }
           }
         ]
@@ -165,8 +165,12 @@
   },
   "active": "b37c6acaf93e63fb",
   "lastOpenFiles": [
-    "C Sharp Coding/Programscs1.md",
+    "Databases/2.1- Amazon NoSQL DB Use Cases.md",
+    "Databases/1- NoSQL VS SQL.md",
+    "Databases/2.2- Amazon NoSQL DB Use Cases.md",
     "C Sharp Coding/Programcs2.md",
+    "Databases",
+    "C Sharp Coding/Programscs1.md",
     "C Sharp Coding/Test Proj.md",
     "C Sharp Coding/Controller.md",
     "C Sharp Coding/Create solution and project.md",
@@ -191,16 +195,12 @@
     "1-JS/9 Array.reduce().md",
     "1-JS/8 Array.filter().md",
     "1-JS/71 Deep Copy.md",
-    "1-JS/7 Array.map().md",
-    "1-JS/62 Modules vs Packages.md",
-    "1-JS/61 return false vs event.prevent.md",
     "1-JS",
     "3-React",
     "2.3 Analysis",
     "2.1- Code Guidelines",
     "1-AustRoad",
     "2 Dev Process",
-    "Process",
     "AKS/DeployOnAKSCluster.gif",
     "Pasted image 20250312113552.png",
     "Pasted image 20250220163911.png",
