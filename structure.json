@@ -48,14 +48,14 @@
         "23 How to update a prop via the parent.md",
         "2State Prop Hooks.md",
         "3CSS.md",
+        "40Hooks Categories.md",
         "41 All Hooks.md",
         "4Hooks.md",
         "5When to use class vs function.md",
         "6useMemo useCallback ReactMemo.md",
         "7 Hook useReducer.md",
         "9 BootStrap vs Material UI.md",
-        "9Redux and Context API.md",
-        "Hooks Categories.md"
+        "9Redux and Context API.md"
     ],
     "4-Net": [
         "1-What is new in .Net 8.md",
