@@ -1,280 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Folder Viewer</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <style>
-        body {
-            user-select: none;
-        }
-        .active-folder {
-            background-color: #ffc107 !important;
-            color: black !important;
-            font-weight: bold;
-        }
-.floating-pane {
-    position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    z-index: 9999 !important;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    border-radius: 10px;
-    max-height: 90vh;
-    max-width: 90vw;
-    overflow: auto;
-}
-
-#overlayPanel {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  max-height: 80vh;
-  overflow-y: auto;
-  background-color: #111;
-  color: #fff;
-  z-index: 1000;
-  border-bottom: 2px solid #444;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.7);
-}
-
-#overlayContent {
-  padding: 20px;
-  position: relative;
-}
-
-#fileContent {
-  all: initial; /* resets all inherited styles */
-  font-family: Arial, sans-serif;
-  line-height: 1.5;
-  color: #eee;
-  background: #111;
-}
-
-#fileContent * {
-  all: revert; /* restores basic formatting like h2, li, etc. */
-  color: inherit;
-}
-
-#closeOverlay {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: transparent;
-  border: none;
-  color: #f36;
-  font-size: 20px;
-  cursor: pointer;
-}
-		
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Folder Viewer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body {
+      user-select: none;
+    }
+    .active-folder {
+      background-color: #ffc107 !important;
+      color: black !important;
+      font-weight: bold;
+    }
+    .floating-pane {
+      position: fixed !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      z-index: 9999 !important;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      border-radius: 10px;
+      max-height: 90vh;
+      max-width: 90vw;
+      overflow: auto;
+    }
+    #overlayPanel {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-height: 90vh;
+      max-width: 90vw;
+      overflow-y: auto;
+      background-color: #111;
+      color: #fff;
+      z-index: 1000;
+      border: 2px solid #444;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.7);
+      display: none;
+    }
+    #overlayContent {
+      padding: 20px;
+      position: relative;
+    }
+    #fileContent {
+      all: initial;
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      color: #eee;
+      background: #111;
+    }
+    #fileContent * {
+      all: revert;
+      color: inherit;
+    }
+    #closeOverlay {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: transparent;
+      border: none;
+      color: #f36;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    /* Ctrl Panel Styling */
+    #ctrlPanel a:nth-child(odd) {
+      color: #17c0eb;
+    }
+    #ctrlPanel a:nth-child(even) {
+      color: #ffeaa7;
+    }
+    .file-column {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .file-column li {
+      width: 48%;
+      margin: 2px 0;
+    }
+  </style>
 </head>
 <body>
-    <div class="container-fluid vh-100 d-flex" id="mainContainer">
-        <div class="bg-secondary text-white p-3 overflow-auto" id="leftPane" style="width: 250px; min-width: 250px;">
-            <h3 class="text-center">Folders</h3>
-            <div id="folders"></div>
-        </div>
-        <div class="flex-grow-1 p-3 bg-light overflow-auto" id="rightPane">
-            <div id="files">
-                <h3 class="text-center text-muted">Select a folder to view its files</h3>
-            </div>
-        </div>
+<div class="container-fluid vh-100 d-flex" id="mainContainer">
+  <div class="bg-secondary text-white p-3 overflow-auto" id="leftPane" style="width: 250px; min-width: 250px;">
+    <h3 class="text-center">Folders</h3>
+    <div id="folders"></div>
+  </div>
+  <div class="flex-grow-1 p-3 bg-light overflow-auto" id="rightPane">
+    <div id="files">
+      <h3 class="text-center text-muted">Select a folder to view its files</h3>
     </div>
-<div id="overlayPanel" style="display:none;">
-  <div id="overlayContent">
-    <button id="closeOverlay" title="Close">❌</button>
-		<div id="fileContent"></div>
   </div>
 </div>
-	
 
-    <script>
-        async function loadStructure() {
-            try {
-                const response = await fetch("structure.json");
-                const data = await response.json();
+<!-- Top File Viewer -->
+<div id="overlayPanel">
+  <div id="overlayContent">
+    <button id="closeOverlay" title="Close">❌</button>
+    <div id="fileContent"></div>
+  </div>
+</div>
 
-                const foldersDiv = document.getElementById("folders");
-                const filesDiv = document.getElementById("files");
+<!-- Ctrl Panel -->
+<div id="ctrlPanel" class="floating-pane bg-dark text-white p-4" style="display: none;">
+  <button onclick="document.getElementById('ctrlPanel').style.display='none'" class="btn btn-sm btn-danger float-end">❌</button>
+  <h4>Folder & File Navigator</h4>
+  <div id="ctrlContent"></div>
+</div>
 
-                foldersDiv.innerHTML = "";
-                for (const folder in data) {
-                    if (data[folder].length === 0) continue;
+<script>
+  async function loadStructure() {
+    try {
+      const response = await fetch("structure.json");
+      const data = await response.json();
 
-                    const folderButton = document.createElement("button");
-                    folderButton.classList.add("btn", "btn-dark", "mb-2", "w-100");
-                    folderButton.textContent = folder;
+      const foldersDiv = document.getElementById("folders");
+      const filesDiv = document.getElementById("files");
 
-                    folderButton.addEventListener("click", async () => {
-                        await displayFiles(folder, data[folder]);
+      foldersDiv.innerHTML = "";
+      for (const folder in data) {
+        if (data[folder].length === 0) continue;
 
-                        // Highlight active folder
-                        document.querySelectorAll("#folders button").forEach(btn =>
-                            btn.classList.remove("active-folder")
-                        );
-                        folderButton.classList.add("active-folder");
-                    });
+        const folderButton = document.createElement("button");
+        folderButton.classList.add("btn", "btn-dark", "mb-2", "w-100");
+        folderButton.textContent = folder;
+        folderButton.dataset.files = JSON.stringify(data[folder]);
 
-                    foldersDiv.appendChild(folderButton);
-                }
-
-                async function displayFiles(folder, files) {
-                    filesDiv.innerHTML = `<h2 class="text-center text-white bg-dark p-2">${folder}</h2>`;
-
-                    if (files.length === 0) {
-                        filesDiv.innerHTML += "<p>No files available.</p>";
-                    } else {
-                        const fileCards = await Promise.all(files.map(async (file) => {
-                            const filePath = `${folder}/${file}`;
-                            const fileContent = await fetch(`${filePath}?t=${new Date().getTime()}`)
-                                .then(res => res.ok ? res.text() : `Error response\n\nError code: ${res.status}\nMessage: ${res.statusText}`)
-                                .catch(() => "Failed to load content.");
-
-                            let preview = typeof marked === "function"
-                                ? marked(fileContent.substring(0, 1000))
-                                : fileContent.substring(0, 1000).replace(/\n/g, "<br>");
-
-                            preview = preview
-                                ? preview.replace(/\*\*(.*?)\*\*/g, "<u><b style='display: inline-block; margin: 1px 0; color: blue'>$1</b></u>")
-                                : "";
-
-                            return `
-                                <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                                    <div class="card h-100 shadow">
-                                        <div class="card-body">
-                                            <h5 class="card-title fs-6">${file.replace(/%20/g, " ")}</h5>
-                                            <div class="card-text small">${preview}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            `;
-                        }));
-
-                        filesDiv.innerHTML += `<div class="row">${fileCards.join("")}</div>`;
-                    }
-                }
-
-            } catch (error) {
-                console.error("Error loading structure.json:", error);
-            }
-        }
-
-        window.onload = loadStructure;
-
-        // Right-click toggle logic
-        document.addEventListener("contextmenu", function (event) {
-            event.preventDefault();
-
-            const leftPane = document.getElementById("leftPane");
-            const rightPane = document.getElementById("rightPane");
-
-            const isHidden = leftPane.style.display === "none";
-            leftPane.style.display = isHidden ? "block" : "none";
-
-            if (isHidden) {
-                rightPane.classList.remove("w-100");
-                rightPane.classList.add("flex-grow-1");
-            } else {
-                rightPane.classList.remove("flex-grow-1");
-                rightPane.classList.add("w-100");
-            }
+        folderButton.addEventListener("click", async () => {
+          await displayFiles(folder, data[folder]);
+          document.querySelectorAll("#folders button").forEach(btn =>
+            btn.classList.remove("active-folder"));
+          folderButton.classList.add("active-folder");
         });
 
-        // Scroll navigation
-        let currentIndex = 0;
-        let folderButtons = [];
+        foldersDiv.appendChild(folderButton);
+      }
 
-        async function refreshFolderButtons() {
-            folderButtons = Array.from(document.querySelectorAll("#folders button"));
+      async function displayFiles(folder, files) {
+        filesDiv.innerHTML = `<h2 class="text-center text-white bg-dark p-2">${folder}</h2>`;
+        if (files.length === 0) {
+          filesDiv.innerHTML += "<p>No files available.</p>";
+        } else {
+          const fileCards = await Promise.all(files.map(async (file) => {
+            const filePath = `${folder}/${file}`;
+            const fileContent = await fetch(`${filePath}?t=${new Date().getTime()}`)
+              .then(res => res.ok ? res.text() : `Error response\n\nError code: ${res.status}\nMessage: ${res.statusText}`)
+              .catch(() => "Failed to load content.");
+            let preview = typeof marked === "function"
+              ? marked(fileContent.substring(0, 1000))
+              : fileContent.substring(0, 1000).replace(/\n/g, "<br>");
+            return `
+              <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                <div class="card h-100 shadow">
+                  <div class="card-body">
+                    <h5 class="card-title fs-6">${file.replace(/%20/g, " ")}</h5>
+                    <div class="card-text small">${preview}</div>
+                  </div>
+                </div>
+              </div>`;
+          }));
+          filesDiv.innerHTML += `<div class="row">${fileCards.join("")}</div>`;
         }
-
-        window.onload = async () => {
-            await loadStructure();
-            refreshFolderButtons();
-        };
-
-        const leftPane = document.getElementById("leftPane");
-
-        leftPane.addEventListener("mouseenter", () => {
-            refreshFolderButtons();
-        });
-
-        leftPane.addEventListener("wheel", (event) => {
-            event.preventDefault();
-
-            const direction = event.deltaY > 0 ? 1 : -1;
-            const heading = document.querySelector("#files h2");
-            const currentFolderName = heading ? heading.textContent.trim() : "";
-
-            const indexNow = folderButtons.findIndex(btn => btn.textContent.trim() === currentFolderName);
-            if (indexNow !== -1) currentIndex = indexNow;
-
-            currentIndex = Math.max(0, Math.min(folderButtons.length - 1, currentIndex + direction));
-            folderButtons[currentIndex].click();
-        }, { passive: false });
-    </script>
-<script>
-    let isFloating = false;
-    document.addEventListener("keydown", (e) => {
-        if (e.code === "Space") {
-            e.preventDefault(); // prevent page scroll
-            const leftPane = document.getElementById("leftPane");
-
-            isFloating = !isFloating;
-            if (isFloating) {
-                leftPane.classList.add("floating-pane");
-            } else {
-                leftPane.classList.remove("floating-pane");
-            }
-        }
-    });
-</script>
-<script>
-function loadFileIntoPanel(relativeUrl) {
-  fetch(relativeUrl)
-    .then(response => {
-      if (!response.ok) throw new Error("File not found");
-      return response.text();
-    })
-    .then(data => {
-      const panel = document.getElementById("overlayPanel");
-      const content = document.getElementById("fileContent");
-
-      content.innerHTML = data;  // ✅ Inject as HTML
-      panel.style.display = "block";
-    })
-    .catch(err => {
-      const panel = document.getElementById("overlayPanel");
-      const content = document.getElementById("fileContent");
-
-      content.textContent = "❌ Error loading file: " + err.message;
-      panel.style.display = "block";
-    });
-}
-
-// Close panel with ESC key
-document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape") {
-    document.getElementById("overlayPanel").style.display = "none";
+      }
+    } catch (error) {
+      console.error("Error loading structure.json:", error);
+    }
   }
-});
 
-// Close panel with ❌ button
-document.addEventListener("DOMContentLoaded", () => {
-  const closeBtn = document.getElementById("closeOverlay");
-  if (closeBtn) {
-    closeBtn.addEventListener("click", function () {
+  window.onload = async () => {
+    await loadStructure();
+    refreshFolderButtons();
+  };
+
+  document.addEventListener("contextmenu", function (event) {
+    event.preventDefault();
+    const leftPane = document.getElementById("leftPane");
+    const rightPane = document.getElementById("rightPane");
+    const isHidden = leftPane.style.display === "none";
+    leftPane.style.display = isHidden ? "block" : "none";
+    rightPane.classList.toggle("w-100", !isHidden);
+    rightPane.classList.toggle("flex-grow-1", isHidden);
+  });
+
+  let currentIndex = 0;
+  let folderButtons = [];
+  function refreshFolderButtons() {
+    folderButtons = Array.from(document.querySelectorAll("#folders button"));
+  }
+
+  const leftPane = document.getElementById("leftPane");
+  leftPane.addEventListener("mouseenter", () => refreshFolderButtons());
+  leftPane.addEventListener("wheel", (event) => {
+    event.preventDefault();
+    const direction = event.deltaY > 0 ? 1 : -1;
+    const heading = document.querySelector("#files h2");
+    const currentFolderName = heading ? heading.textContent.trim() : "";
+    const indexNow = folderButtons.findIndex(btn => btn.textContent.trim() === currentFolderName);
+    if (indexNow !== -1) currentIndex = indexNow;
+    currentIndex = Math.max(0, Math.min(folderButtons.length - 1, currentIndex + direction));
+    folderButtons[currentIndex].click();
+  }, { passive: false });
+
+  let isFloating = false;
+  document.addEventListener("keydown", (e) => {
+    if (e.code === "Space") {
+      e.preventDefault();
+      isFloating = !isFloating;
+      leftPane.classList.toggle("floating-pane", isFloating);
+    }
+  });
+
+  function loadFileIntoPanel(relativeUrl) {
+    fetch(relativeUrl)
+      .then(response => {
+        if (!response.ok) throw new Error("File not found");
+        return response.text();
+      })
+      .then(data => {
+        const overlay = document.getElementById("overlayPanel");
+        document.getElementById("fileContent").innerHTML = data;
+        overlay.style.display = "block";
+        document.getElementById("ctrlPanel").style.display = "none";
+      })
+      .catch(err => {
+        document.getElementById("fileContent").textContent = "❌ Error loading file: " + err.message;
+        document.getElementById("overlayPanel").style.display = "block";
+        document.getElementById("ctrlPanel").style.display = "none";
+      });
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
       document.getElementById("overlayPanel").style.display = "none";
-    });
-  }
-});
-</script>
+      document.getElementById("ctrlPanel").style.display = "none";
+    }
+  });
 
-	
+  document.addEventListener("DOMContentLoaded", () => {
+    const closeBtn = document.getElementById("closeOverlay");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", function () {
+        document.getElementById("overlayPanel").style.display = "none";
+      });
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && !e.repeat) {
+      const ctrlPanel = document.getElementById("ctrlPanel");
+      const ctrlContent = document.getElementById("ctrlContent");
+      ctrlContent.innerHTML = "";
+      ctrlPanel.style.display = "block";
+
+      const folders = document.querySelectorAll("#folders button");
+      folders.forEach(folderBtn => {
+        const folderName = folderBtn.textContent.trim();
+        const files = folderBtn.dataset.files ? JSON.parse(folderBtn.dataset.files) : [];
+
+        const folderDiv = document.createElement("div");
+        folderDiv.classList.add("mb-3");
+
+        const folderTitle = document.createElement("h5");
+        folderTitle.textContent = folderName;
+        folderDiv.appendChild(folderTitle);
+
+        const fileList = document.createElement("ul");
+        fileList.classList.add("list-unstyled", "file-column");
+
+        files.forEach((file, index) => {
+          const fileItem = document.createElement("li");
+          fileItem.innerHTML = `<a href="#" onclick="loadFileIntoPanel('${folderName}/${file}'); return false;">${file}</a>`;
+          fileList.appendChild(fileItem);
+        });
+
+        folderDiv.appendChild(fileList);
+        ctrlContent.appendChild(folderDiv);
+      });
+    }
+  });
+</script>
 </body>
 </html>

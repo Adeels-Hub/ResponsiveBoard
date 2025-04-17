@@ -1,7 +1,7 @@
 import os
 import json
 
-skip_folders = ["dashboard"]
+skip_folders = ["dashboard", "9.1 AWS"]
 skip_folders = [name.lower() for name in skip_folders]
 
 def generate_structure_json(root_dir):

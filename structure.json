@@ -68,23 +68,17 @@
         "Auth middleware vs policies.md",
         "Task.Run vs Async Call.md"
     ],
-    "9.1 AWS": [
-        "1-API Gatway.md",
-        "2-Auth ApiGateway.md",
-        "3-ApiGateWay vs ALB.md",
-        "API Gateway cant Do.md",
-        "APIGateWayCant Do  WAF.md",
-        "ELB - Elastic Load Balancer.md",
-        "IAM.md",
-        "Lambda Cost Control.md",
-        "Lambda investigation.md",
-        "Lambda Timeout.md",
-        "NACL ResourceGroup.md",
-        "Z- Cloud Native.md",
-        "Z91- Cloud Native.md",
-        "Z92- Cloud Native.md",
-        "Z94- Cloud Native.md",
-        "Z95- Cloud Native.md"
+    "5-AKS": [
+        "AKS is PaaS or IaaS.md",
+        "AppService and Azure function.md",
+        "Diagram Deployment on AKS Cluster.md",
+        "GPT AppService Plans for Functions.md",
+        "HELM.md",
+        "Helm1.md",
+        "Put Api in Function.md",
+        "What NGINX can do which AGIC cant.md",
+        "why run azure function in AppService.md",
+        "zConsumption Premium AppService.md"
     ],
     "Architecture": [
         "1-MicroServices.md"
