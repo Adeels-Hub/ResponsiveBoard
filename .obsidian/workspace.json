@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "3-React/22 Why can't we modify props directly.md",
+                "file": "3-React/41 All Hooks.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "22 Why can't we modify props directly"
+              "title": "41 All Hooks"
             }
           }
         ]
@@ -163,8 +163,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "347e2f27075c7542",
+  "active": "b37c6acaf93e63fb",
   "lastOpenFiles": [
+    "3-React/23 How to update a prop via the parent.md",
+    "3-React/41 All Hooks.md",
+    "3-React/4Hooks.md",
+    "3-React/22 Why can't we modify props directly.md",
     "3-React/12Basics.md",
     "Databases/2.2- Amazon NoSQL DB Use Cases.md",
     "Databases/2.1- Amazon NoSQL DB Use Cases.md",
@@ -179,11 +183,7 @@
     "C Sharp Coding",
     "dashboard/ReactHooks.pdf",
     "3-React/ReactHooks.pdf",
-    "3-React/41 All Hooks.md",
-    "3-React/22 Why can't we modify props directly.md",
-    "3-React/4Hooks.md",
     "1-JS/93- Ways to create objects.md",
-    "3-React/23 How to update a prop via the parent.md",
     "3-React/93- Ways to create.md",
     "3-React/7 Hook useReducer.md",
     "3-React/9 BootStrap vs Material UI.md",

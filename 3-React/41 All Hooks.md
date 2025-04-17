@@ -8,3 +8,4 @@ React hooks serve the purpose of enabling **state management** and **side effect
 **Utility Hooks**:
        useLayoutEffect, useId, useDebugValue       
 **Custom Hooks Code Reusabilit**
+<a href="#" onclick="event.preventDefault(); loadFileIntoPanel('/3-React/Detail/hooks.html');">Details</a>

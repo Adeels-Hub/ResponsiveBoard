@@ -15,6 +15,62 @@
             color: black !important;
             font-weight: bold;
         }
+.floating-pane {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 9999 !important;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    border-radius: 10px;
+    max-height: 90vh;
+    max-width: 90vw;
+    overflow: auto;
+}
+
+#overlayPanel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  background-color: #111;
+  color: #fff;
+  z-index: 1000;
+  border-bottom: 2px solid #444;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.7);
+}
+
+#overlayContent {
+  padding: 20px;
+  position: relative;
+}
+
+#fileContent {
+  all: initial; /* resets all inherited styles */
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  color: #eee;
+  background: #111;
+}
+
+#fileContent * {
+  all: revert; /* restores basic formatting like h2, li, etc. */
+  color: inherit;
+}
+
+#closeOverlay {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  color: #f36;
+  font-size: 20px;
+  cursor: pointer;
+}
+		
     </style>
 </head>
 <body>
@@ -29,6 +85,13 @@
             </div>
         </div>
     </div>
+<div id="overlayPanel" style="display:none;">
+  <div id="overlayContent">
+    <button id="closeOverlay" title="Close">❌</button>
+		<div id="fileContent"></div>
+  </div>
+</div>
+	
 
     <script>
         async function loadStructure() {
@@ -155,5 +218,63 @@
             folderButtons[currentIndex].click();
         }, { passive: false });
     </script>
+<script>
+    let isFloating = false;
+    document.addEventListener("keydown", (e) => {
+        if (e.code === "Space") {
+            e.preventDefault(); // prevent page scroll
+            const leftPane = document.getElementById("leftPane");
+
+            isFloating = !isFloating;
+            if (isFloating) {
+                leftPane.classList.add("floating-pane");
+            } else {
+                leftPane.classList.remove("floating-pane");
+            }
+        }
+    });
+</script>
+<script>
+function loadFileIntoPanel(relativeUrl) {
+  fetch(relativeUrl)
+    .then(response => {
+      if (!response.ok) throw new Error("File not found");
+      return response.text();
+    })
+    .then(data => {
+      const panel = document.getElementById("overlayPanel");
+      const content = document.getElementById("fileContent");
+
+      content.innerHTML = data;  // ✅ Inject as HTML
+      panel.style.display = "block";
+    })
+    .catch(err => {
+      const panel = document.getElementById("overlayPanel");
+      const content = document.getElementById("fileContent");
+
+      content.textContent = "❌ Error loading file: " + err.message;
+      panel.style.display = "block";
+    });
+}
+
+// Close panel with ESC key
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    document.getElementById("overlayPanel").style.display = "none";
+  }
+});
+
+// Close panel with ❌ button
+document.addEventListener("DOMContentLoaded", () => {
+  const closeBtn = document.getElementById("closeOverlay");
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function () {
+      document.getElementById("overlayPanel").style.display = "none";
+    });
+  }
+});
+</script>
+
+	
 </body>
 </html>

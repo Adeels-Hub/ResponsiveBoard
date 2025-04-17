@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>React Hooks Summary</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h2 {
+      margin-top: 2em;
+      color: #2c3e50;
+    }
+    h3 {
+      margin-top: 1.5em;
+      color: #34495e;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #eee;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <p>
+    React Hooks, introduced in React 16.8, revolutionized functional components by enabling them to manage state,
+    side effects, and more—without needing class components. This guide categorizes all core hooks into 8 groups,
+    with clear use cases for each:
+  </p>
+
+  <h2>🧠 Categories of Hooks</h2>
+
+  <h3>State Management</h3>
+  <ul>
+    <li><code>useState</code>: Basic local state</li>
+    <li><code>useReducer</code>: Complex state logic</li>
+    <li><code>useSyncExternalStore</code>: Sync external non-React stores</li>
+  </ul>
+
+  <h3>Effects</h3>
+  <ul>
+    <li><code>useEffect</code>: Side effects post-render</li>
+    <li><code>useLayoutEffect</code>: DOM measurement before paint</li>
+    <li><code>useInsertionEffect</code>: Style injection (mainly for CSS-in-JS)</li>
+  </ul>
+
+  <h3>Refs</h3>
+  <ul>
+    <li><code>useRef</code>: Persist values or reference DOM</li>
+    <li><code>useImperativeHandle</code>: Expose instance methods to parents</li>
+  </ul>
+
+  <h3>Performance</h3>
+  <ul>
+    <li><code>useMemo</code>: Cache computed values</li>
+    <li><code>useCallback</code>: Cache function definitions</li>
+  </ul>
+
+  <h3>Context</h3>
+  <ul>
+    <li><code>useContext</code>: Consume context data directly</li>
+  </ul>
+
+  <h3>Transitions</h3>
+  <ul>
+    <li><code>useTransition</code>: Defer non-urgent state updates</li>
+    <li><code>useDeferredValue</code>: Delay value updates for smoother UI</li>
+  </ul>
+
+  <h3>Utility Hooks</h3>
+  <ul>
+    <li><code>useDebugValue</code>: Custom hook debugging</li>
+    <li><code>useId</code>: Generate unique, stable IDs</li>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "sections": [
+    {
+      "sectionName": "React",
+      "links": [
+        {
+          "name": "hooks",
+          "url": ""
+        },
+        {
+          "name": "tailwin",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "sectionName": "DOT Net",
+      "links": [
+        {
+          "name": "New in .Net 8",
+          "url": ""
+        },
+        {
+          "name": "Tasks",
+          "url": ""
+        }
+      ]
+    }
+  ]
+}
