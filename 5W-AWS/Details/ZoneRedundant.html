@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f8f8f8;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #e0f7fa;
+    }
+  </style>
+</head>
+<body>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th>Tied to AZ?</th>
+        <th>Tied to Region?</th>
+        <th>Global Service?</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Lambda</td><td>❌</td><td>✅</td><td>❌</td><td>You choose region; AWS manages AZ failover automatically</td></tr>
+      <tr><td>ALB</td><td>❌</td><td>✅</td><td>❌</td><td>Spans multiple AZs in a region for HA</td></tr>
+      <tr><td>ELB (Classic/NLB)</td><td>❌</td><td>✅</td><td>❌</td><td>Also spans multiple AZs when configured</td></tr>
+      <tr><td>API Gateway</td><td>❌</td><td>✅</td><td>❌</td><td>Region-level, with edge-optimized deployments available</td></tr>
+      <tr><td>Global Accelerator</td><td>❌</td><td>❌</td><td>✅</td><td>Fully global; routes to closest AWS edge or region</td></tr>
+      <tr><td>Route 53</td><td>❌</td><td>❌</td><td>✅</td><td>DNS service—global by design</td></tr>
+      <tr><td>SNS</td><td>❌</td><td>✅</td><td>❌</td><td>Regional service; messages stay within a region</td></tr>
+      <tr><td>SQS</td><td>❌</td><td>✅</td><td>❌</td><td>Regional queues (you pick the region)</td></tr>
+      <tr><td>ECS - Fargate</td><td>❌</td><td>✅</td><td>❌</td><td>ECS service is regional; AWS places tasks in AZs</td></tr>
+      <tr><td>ECS - EC2 Launch Type</td><td>✅</td><td>✅</td><td>❌</td><td>You must choose specific subnets (AZs) for the EC2 instances</td></tr>
+      <tr><td>WAF</td><td>❌</td><td>✅</td><td>✅ (for CloudFront)</td><td>Regional with ALB/API Gateway; Global with CloudFront</td></tr>
+    </tbody>
+  </table>
+
+</body>
+</html>

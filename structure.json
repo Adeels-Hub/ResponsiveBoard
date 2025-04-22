@@ -80,7 +80,7 @@
         "why run azure function in AppService.md",
         "zConsumption Premium AppService.md"
     ],
-    "9.1 AWS": [
+    "5W-AWS": [
         "1-API Gatway.md",
         "2-Auth ApiGateway.md",
         "3-ApiGateWay vs ALB.md",

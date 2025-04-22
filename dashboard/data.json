@@ -86,6 +86,17 @@
   ],
       "SubSections": []
     },
+	
+	    {
+      "SectionName": "AWS",
+      "Bookmarks": [
+        {
+          "URL": "https://adeels-hub.github.io/ResponsiveBoard/5W-AWS/Details/ZoneRedundant.html",
+          "URLName": "ZoneRedundant-Services"
+       }		
+      ],
+      "SubSections": []
+    },
 
     {
       "SectionName": "Family",
