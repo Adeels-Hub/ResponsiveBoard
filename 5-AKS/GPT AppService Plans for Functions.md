@@ -1,0 +1,5 @@
+- Your functions require always-on support or long-running processes.
+- You need VNET Integration for secure resource access.
+- You prefer fixed pricing over consumption-based billing.
+- You want specific control over scaling and instance counts.
+- Your functions and web app need to share the same environment and resources.
