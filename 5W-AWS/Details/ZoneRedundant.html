@@ -117,5 +117,38 @@
     </tbody>
   </table>
 
+  <h2>AWS Service Types vs Fault Tolerance</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Service Type</th>
+        <th>Fault Tolerance</th>
+        <th>Examples</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>AZ-Scoped</td>
+        <td>❌ Low</td>
+        <td>EC2 (single instance), EBS</td>
+      </tr>
+      <tr>
+        <td>Multi-AZ</td>
+        <td>✅ Medium</td>
+        <td>RDS Multi-AZ, ALB, Aurora</td>
+      </tr>
+      <tr>
+        <td>Regional</td>
+        <td>✅✅ High</td>
+        <td>Lambda, API Gateway, DynamoDB</td>
+      </tr>
+      <tr>
+        <td>Global</td>
+        <td>✅✅✅ Very High</td>
+        <td>Route 53, IAM, Global Accelerator</td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 </html>
