@@ -1,1 +1,0 @@
-<a href="#" onclick="event.preventDefault(); loadFileIntoPanel('/5W-AWS/Details/ZoneRedundant.html');">Service in zone or region</a>

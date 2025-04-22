@@ -1,35 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>AWS Services Zone Awareness</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1e1e1e;
+      color: #f5f5f5;
+      padding: 20px;
+    }
+
+    button {
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      font-family: Arial, sans-serif;
     }
 
     th, td {
-      border: 1px solid #ccc;
+      border: 1px solid #444;
       padding: 10px;
       text-align: left;
     }
 
     th {
-      background-color: #f8f8f8;
-      font-weight: bold;
+      background-color: #333;
     }
 
     tr:nth-child(even) {
-      background-color: #f2f2f2;
+      background-color: #2a2a2a;
     }
 
-    tr:hover {
-      background-color: #e0f7fa;
+    .notes-row {
+      display: none;
+      background-color: #333;
+      color: #ddd;
+    }
+
+    .notes-cell {
+      padding: 10px;
+      font-style: italic;
     }
   </style>
+  <script>
+    let notesVisible = false;
+
+    function toggleAllNotes() {
+      notesVisible = !notesVisible;
+      const noteRows = document.querySelectorAll(".notes-row");
+      noteRows.forEach(row => {
+        row.style.display = notesVisible ? "table-row" : "none";
+      });
+    }
+  </script>
 </head>
 <body>
+
+  <h2>AWS Services — AZ, Region, Global Scope</h2>
+  <button onclick="toggleAllNotes()">Toggle All Notes</button>
 
   <table>
     <thead>
@@ -38,21 +79,41 @@
         <th>Tied to AZ?</th>
         <th>Tied to Region?</th>
         <th>Global Service?</th>
-        <th>Notes</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td>Lambda</td><td>❌</td><td>✅</td><td>❌</td><td>You choose region; AWS manages AZ failover automatically</td></tr>
-      <tr><td>ALB</td><td>❌</td><td>✅</td><td>❌</td><td>Spans multiple AZs in a region for HA</td></tr>
-      <tr><td>ELB (Classic/NLB)</td><td>❌</td><td>✅</td><td>❌</td><td>Also spans multiple AZs when configured</td></tr>
-      <tr><td>API Gateway</td><td>❌</td><td>✅</td><td>❌</td><td>Region-level, with edge-optimized deployments available</td></tr>
-      <tr><td>Global Accelerator</td><td>❌</td><td>❌</td><td>✅</td><td>Fully global; routes to closest AWS edge or region</td></tr>
-      <tr><td>Route 53</td><td>❌</td><td>❌</td><td>✅</td><td>DNS service—global by design</td></tr>
-      <tr><td>SNS</td><td>❌</td><td>✅</td><td>❌</td><td>Regional service; messages stay within a region</td></tr>
-      <tr><td>SQS</td><td>❌</td><td>✅</td><td>❌</td><td>Regional queues (you pick the region)</td></tr>
-      <tr><td>ECS - Fargate</td><td>❌</td><td>✅</td><td>❌</td><td>ECS service is regional; AWS places tasks in AZs</td></tr>
-      <tr><td>ECS - EC2 Launch Type</td><td>✅</td><td>✅</td><td>❌</td><td>You must choose specific subnets (AZs) for the EC2 instances</td></tr>
-      <tr><td>WAF</td><td>❌</td><td>✅</td><td>✅ (for CloudFront)</td><td>Regional with ALB/API Gateway; Global with CloudFront</td></tr>
+      <tr><td>Lambda</td><td>No</td><td>Yes</td><td>No</td></tr>
+      <tr class="notes-row"><td colspan="4" class="notes-cell">You choose region; AWS manages AZ failover automatically.</td></tr>
+
+      <tr><td>ALB</td><td>No</td><td>Yes</td><td>No</td></tr>
+      <tr class="notes-row"><td colspan="4" class="notes-cell">Spans multiple AZs in a region for HA.</td></tr>
+
+      <tr><td>ELB (Classic/NLB)</td><td>No</td><td>Yes</td><td>No</td></tr>
+      <tr class="notes-row"><td colspan="4" class="notes-cell">Also spans multiple AZs when configured.</td></tr>
+
+      <tr><td>API Gateway</td><td>No</td><td>Yes</td><td>No</td></tr>
+      <tr class="notes-row"><td colspan="4" class="notes-cell">Region-level, with edge-optimized deployments available.</td></tr>
+
+      <tr><td>Global Accelerator</td><td>No</td><td>No</td><td>Yes</td></tr>
+      <tr class="notes-row"><td colspan="4" class="notes-cell">Fully global; routes to closest AWS edge or region.</td></tr>
+
+      <tr><td>Route 53</td><td>No</td><td>No</td><td>Yes</td></tr>
+      <tr class="notes-row"><td colspan="4" class="notes-cell">DNS service—global by design.</td></tr>
+
+      <tr><td>SNS</td><td>No</td><td>Yes</td><td>No</td></tr>
+      <tr class="notes-row"><td colspan="4" class="notes-cell">Regional service; messages stay within a region.</td></tr>
+
+      <tr><td>SQS</td><td>No</td><td>Yes</td><td>No</td></tr>
+      <tr class="notes-row"><td colspan="4" class="notes-cell">Regional queues (you pick the region).</td></tr>
+
+      <tr><td>ECS - Fargate</td><td>No</td><td>Yes</td><td>No</td></tr>
+      <tr class="notes-row"><td colspan="4" class="notes-cell">ECS service is regional; AWS places tasks in AZs.</td></tr>
+
+      <tr><td>ECS - EC2 Launch Type</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+      <tr class="notes-row"><td colspan="4" class="notes-cell">You must choose specific subnets (AZs) for the EC2 instances.</td></tr>
+
+      <tr><td>WAF</td><td>No</td><td>Yes</td><td>Yes (for CloudFront)</td></tr>
+      <tr class="notes-row"><td colspan="4" class="notes-cell">Regional with ALB/API Gateway; Global with CloudFront.</td></tr>
     </tbody>
   </table>
 
