@@ -93,7 +93,11 @@
         {
           "URL": "https://adeels-hub.github.io/ResponsiveBoard/5W-AWS/Details/ZoneRedundant.html",
           "URLName": "ZoneRedundant-Services"
-       }		
+       },
+        {
+          "URL": "https://adeels-hub.github.io/ResponsiveBoard/5W-AWS/Details/DepOptions.html",
+          "URLName": "Deploymnet"
+       }	   
       ],
       "SubSections": []
     },

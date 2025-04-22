@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Fault Tolerant & Secure Architectures</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 15px;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    details {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin: 10px 0;
+      padding: 10px;
+    }
+
+    summary {
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    code {
+      display: block;
+      background: #f0f0f0;
+      padding: 10px;
+      margin-top: 8px;
+      white-space: pre-wrap;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+<h1>AWS Scenarios — Fault Tolerance & Security</h1>
+
+<details>
+  <summary>API Gateway with WAF → Lambda</summary>
+  <code>
+API Gateway with WAF → Lambda  
+- API Gateway is regional, auto-scales, handles throttling & fault tolerance  
+- WAF rules: rate limiting, GeoMatch, IP block  
+- Good for internal APIs or direct client-to-API setups
+  </code>
+</details>
+
+<details>
+  <summary>CloudFront with WAF → API Gateway → Lambda</summary>
+  <code>
+CloudFront with WAF → API Gateway → Lambda  
+- CloudFront adds global caching & edge protection  
+- API Gateway is regional, throttles traffic, handles failover  
+- WAF at CloudFront (only): rate limiting, GeoMatch, IP block  
+- Best for public-facing websites or APIs accessed globally
+  </code>
+</details>
+
+<details>
+  <summary>API Gateway with WAF → ECS Fargate</summary>
+  <code>
+API Gateway with WAF → ECS Fargate  
+- API Gateway is regional, auto-scales, throttles burst traffic  
+- ECS Fargate tasks deployed across multiple AZs for HA  
+- WAF protects API Gateway: rate limiting, IP block, SQLi detection  
+- Ideal for serverless containers needing a lightweight gateway
+  </code>
+</details>
+
+<details>
+  <summary>CloudFront with WAF → API Gateway → ECS Fargate</summary>
+  <code>
+CloudFront with WAF → API Gateway → ECS Fargate  
+- CloudFront caches responses and blocks bad actors early  
+- API Gateway manages throttling & integrates securely with ECS backend  
+- WAF at CloudFront for DoS, GeoMatch, rate limits  
+- Good for high-throughput global APIs with container backends
+  </code>
+</details>
+
+<details>
+  <summary>ALB with WAF → ECS Fargate</summary>
+  <code>
+ALB with WAF → ECS Fargate  
+- ALB is regional, supports path-based routing, auto-scaling targets  
+- Fargate tasks in private subnets across AZs ensure fault tolerance  
+- WAF on ALB: rate limiting, SQL injection, IP filtering  
+- Best when you need L7 routing or WebSockets (which API Gateway lacks)
+  </code>
+</details>
+
+<details>
+  <summary>ALB with WAF → EKS</summary>
+  <code>
+ALB with WAF → EKS  
+- ALB handles ingress to Kubernetes cluster pods across multiple AZs  
+- WAF on ALB blocks abusive traffic, SQLi, IP-based attacks  
+- EKS provides rolling updates, pod auto-healing, and fine-grained policies  
+- Ideal for complex microservices architecture needing Kubernetes control
+  </code>
+</details>
+
+</body>
+</html>
