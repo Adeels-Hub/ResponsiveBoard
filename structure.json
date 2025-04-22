@@ -96,9 +96,7 @@
         "Z91- Cloud Native.md",
         "Z92- Cloud Native.md",
         "Z94- Cloud Native.md",
-        "Z95- Cloud Native.md",
-        "ZoneRedundant.md",
-        "ZR.md"
+        "Z95- Cloud Native.md"
     ],
     "Architecture": [
         "1-MicroServices.md"
