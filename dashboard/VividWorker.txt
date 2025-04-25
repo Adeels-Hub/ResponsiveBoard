@@ -1,0 +1,184 @@
+function corsHeaders(origin) {
+  const allowed = ["http://localhost:8000", "https://vividcanvasandprints.com.au"];
+  const isAllowed = allowed.includes(origin);
+
+  return {
+    "Access-Control-Allow-Origin": isAllowed ? origin : "null", // DO NOT use "*"
+    "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, X-Site-Key",
+    "Access-Control-Allow-Credentials": "true", // Required with credentials
+    "Access-Control-Max-Age": "86400"
+  };
+}
+
+
+
+export default {
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
+    const pathname = url.pathname;
+    const origin = request.headers.get("Origin");
+
+    // 🔹 Handle preflight requests
+    if (request.method === "OPTIONS") {
+      return new Response(null, {
+        status: 204,
+        headers: corsHeaders(origin)
+      });
+    }
+
+    // 🔐 Clear logs (admin-only)
+    if (pathname === "/clear") {
+      const secret = url.searchParams.get("secret");
+      if (secret !== "supersecret123") {
+        return new Response("❌ Unauthorized", { status: 403 });
+      }
+
+      const keys = [];
+      let cursor;
+      do {
+        const list = await env.VISITOR_LOGS.list({ cursor });
+        cursor = list.cursor;
+        keys.push(...list.keys.map(k => k.name));
+      } while (cursor);
+
+      for (const key of keys) {
+        await env.VISITOR_LOGS.delete(key);
+      }
+
+      return new Response(`🧹 Cleared ${keys.length} keys`, {
+        status: 200,
+        headers: corsHeaders(origin)
+      });
+    }
+
+    // 🧪 Debug endpoint
+    if (pathname === "/debug") {
+      const headers = Object.fromEntries(request.headers.entries());
+      return new Response(JSON.stringify(headers, null, 2), {
+        headers: {
+          ...corsHeaders(origin),
+          "Content-Type": "application/json"
+        }
+      });
+    }
+
+    // 📄 Render logs as HTML
+    if (pathname === "/logs") {
+      const list = await env.VISITOR_LOGS.list({ limit: 100, reverse: true });
+      const keys = list.keys.map(k => k.name).filter(k => !k.startsWith("lock_"));
+
+      const entries = await Promise.all(
+        keys.map(async key => {
+          const raw = await env.VISITOR_LOGS.get(key);
+          try {
+            return JSON.parse(raw);
+          } catch {
+            return null;
+          }
+        })
+      );
+
+      const html = `
+        <html>
+          <head>
+            <title>Visitor Logs</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <style>
+              body { font-family: sans-serif; padding: 1rem; font-size: 1rem; }
+              .entry { margin-bottom: 1rem; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; }
+              .internal { background: #fffbe6; }
+              .header { font-weight: bold; }
+              .label { font-weight: bold; color: #333; }
+              .badge { font-size: 0.75rem; padding: 2px 6px; border-radius: 5px; background: #f0c040; color: #333; margin-left: 8px; }
+            </style>
+          </head>
+          <body>
+            <h2>Recent Visitor Logs</h2>
+            ${entries.filter(Boolean).map(e => `
+              <div class="entry ${e.userType === 'internal' ? 'internal' : ''}">
+                <div class="header">
+                  IP: ${e.ip}
+                  ${e.userType === 'internal' ? '<span class="badge">internal</span>' : ''}
+                </div>
+                <div><span class="label">Time:</span> ${e.time}</div>
+                <div><span class="label">Device:</span> ${e.device}</div>
+                <div><span class="label">Page:</span> ${e.page || '/'}</div>
+              </div>
+            `).join('')}
+          </body>
+        </html>
+      `;
+
+      return new Response(html, {
+        headers: {
+          ...corsHeaders(origin),
+          "Content-Type": "text/html"
+        }
+      });
+    }
+
+    // 🟢 Default logging endpoint ("/ping")
+    if (pathname === "/ping") {
+      if (request.method === "OPTIONS") {
+        return new Response(null, {
+          status: 204,
+          headers: corsHeaders(origin)
+        });
+      }
+    
+      const headers = request.headers;
+      const ip = headers.get("CF-Connecting-IP");
+      const userAgent = headers.get("User-Agent") || "Unknown";
+      const cookie = headers.get("Cookie") || "";
+      const isInternal = cookie.includes("user_type=internal") || url.searchParams.has("internal");
+    
+      // 🛠 Get page from query param OR fallback to request referrer path
+      const rawPage = url.searchParams.get("page");
+      let page = rawPage || "/";
+      if (!rawPage && headers.get("Referer")) {
+        try {
+          page = new URL(headers.get("Referer")).pathname;
+        } catch {
+          page = "/";
+        }
+      }
+    
+      const now = new Date();
+      const timeKey = Math.floor(now.getTime() / (5 * 60 * 1000)); // 5-min dedup window
+      const uaHash = userAgent.replace(/\s+/g, "-").slice(0, 32);
+      const key = `log_${ip}_${page}_${uaHash}_${timeKey}`;
+    
+      const data = {
+        ip,
+        time: now.toLocaleString("en-AU", { timeZone: "Australia/Sydney" }),
+        device: userAgent,
+        userType: isInternal ? "internal" : "external",
+        page
+      };
+    
+      const existing = await env.VISITOR_LOGS.get(key);
+      if (!existing) {
+        console.log("📦 Logging new visit:", key, "→", page);
+        await env.VISITOR_LOGS.put(key, JSON.stringify(data));
+      } else {
+        console.log("⚠️ Skipped duplicate within 5 minutes:", key);
+      }
+    
+      return new Response("📥 Ping processed.", {
+        status: 200,
+        headers: {
+          ...corsHeaders(origin),
+          "Content-Type": "text/plain"
+        }
+      });
+    }
+    
+    
+    
+
+
+    // 🟥 Unknown route
+    return new Response("Not Found", { status: 404 });
+  }
+}
