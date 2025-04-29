@@ -111,7 +111,8 @@
     "Databases": [
         "1- NoSQL VS SQL.md",
         "2.1- Amazon NoSQL DB Use Cases.md",
-        "2.2- Amazon NoSQL DB Use Cases.md"
+        "2.2- Amazon NoSQL DB Use Cases.md",
+        "3 Nested Transactions.md"
     ],
     "DotNet": [
         "New in .Net 6.md",
@@ -127,5 +128,8 @@
     "Process": [
         "Diagram Tools.md",
         "SMART Requirements.md"
+    ],
+    "Security": [
+        "CSRF.md"
     ]
 }

@@ -111,6 +111,22 @@
        }		
       ],
       "SubSections": []
-    }                   
+    },
+    {
+      "SectionName": "Cloud Flare",
+      "Bookmarks": [
+        {
+          "URL": "https://dash.cloudflare.com/aa70772199f90f0ee0e35d5f0b2b75f5/workers/plans",
+          "URLName": "Plans"
+       },
+        {
+          "URL": "https://dash.cloudflare.com/aa70772199f90f0ee0e35d5f0b2b75f5/workers/plans",
+          "URLName": "Plans"
+       }	   
+      ],
+      "SubSections": []
+    }     
+	
+	
   ]
 }

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "3-React/41 All Hooks.md",
+                "file": "Security/CSRF.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "41 All Hooks"
+              "title": "CSRF"
             }
           }
         ]
@@ -165,13 +165,18 @@
   },
   "active": "034cabd5e1a0d840",
   "lastOpenFiles": [
+    "Databases/3 Nested Transactions.md",
+    "Security/CSRF.md",
+    "Security/CSRF",
+    "Security",
+    "Databases/2.2- Amazon NoSQL DB Use Cases.md",
+    "3-React/41 All Hooks.md",
     "5W-AWS/Details/DepOptions.html",
     "5W-AWS/Details/ZoneRedundant.html",
     "5W-AWS/Details/ZoneRedundant1.html",
     "5W-AWS/Details/ZR.html",
     "5W-AWS/Details/New Text Document.txt",
     "5W-AWS/Details/Zone Redundant.md",
-    "3-React/41 All Hooks.md",
     "5W-AWS/Z95- Cloud Native.md",
     "5W-AWS/Z94- Cloud Native.md",
     "5W-AWS/Z92- Cloud Native.md",
@@ -196,11 +201,6 @@
     "9-AWS/Z92- Cloud Native.md",
     "9-AWS/Z91- Cloud Native.md",
     "9-AWS/NACL ResourceGroup.md",
-    "9-AWS/Z- Cloud Native.md",
-    "9-AWS/Lambda Timeout.md",
-    "9-AWS/Details",
-    "9-AWS",
-    "9.1 AWS/Details/ZoneRedundant.html",
     "5-AKS/DeployOnAKSCluster.gif",
     "AKS/DeployOnAKSCluster.gif",
     "Pasted image 20250312113552.png",
