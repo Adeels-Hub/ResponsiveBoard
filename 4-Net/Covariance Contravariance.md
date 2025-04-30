@@ -1,0 +1,3 @@
+- Covariance (`out`) allows using a more derived return type.    
+- Contravariance (`in`) allows using a less derived input type.    
+- Applicable in interfaces (e.g., `IEnumerable<out T>`) and delegates (e.g., `Action<in T>`).
