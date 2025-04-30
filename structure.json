@@ -1,22 +1,4 @@
 {
-    "1-JS": [
-        "1 This related issues still relevant.md",
-        "2 This best practices.md",
-        "3 Problems solved by this.md",
-        "4 Advantages of Modules.md",
-        "5 ES Module.md",
-        "6 Why Was CommonJS Introduced.md",
-        "61 return false vs event.prevent.md",
-        "62 Modules vs Packages.md",
-        "7 Array.map().md",
-        "71 Deep Copy.md",
-        "8 Array.filter().md",
-        "9 Array.reduce().md",
-        "90 JSON.parse() and JSON.stringify().md",
-        "91 Object.keys() and Object.values().md",
-        "92CoreJavaScriptConcepts.md",
-        "93- Ways to create objects.md"
-    ],
     "2 Dev Process": [
         "1- Scrum Ceremonies.md",
         "2- Retrospective.md",
@@ -41,30 +23,17 @@
         "Functional Analysis.md",
         "UseCase and UserStory.md"
     ],
-    "3-React": [
-        "11Basics.md",
-        "12Basics.md",
-        "22 Why can't we modify props directly.md",
-        "23 How to update a prop via the parent.md",
-        "2State Prop Hooks.md",
-        "3CSS.md",
-        "41 All Hooks.md",
-        "4Hooks.md",
-        "5When to use class vs function.md",
-        "6useMemo useCallback ReactMemo.md",
-        "7 Hook useReducer.md",
-        "9 BootStrap vs Material UI.md",
-        "9Redux and Context API.md",
-        "Hooks Categories.md"
-    ],
     "4-Net": [
+        "0- New in .Net 6.md",
         "1-What is new in .Net 8.md",
         "2-new in 8.md",
         "3-EF Core 8.md",
+        "3.1- New in C12.md",
         "4-New in ASPNet Core.md",
         "5 - New in Authentication.md",
         "6- New in Tasks.md",
         "9- Tasks.WhenAll vs Wait All.md",
+        "Abstract Class vs Interface.md",
         "Auth middleware vs policies.md",
         "Task.Run vs Async Call.md"
     ],
@@ -79,24 +48,6 @@
         "What NGINX can do which AGIC cant.md",
         "why run azure function in AppService.md",
         "zConsumption Premium AppService.md"
-    ],
-    "5W-AWS": [
-        "1-API Gatway.md",
-        "2-Auth ApiGateway.md",
-        "3-ApiGateWay vs ALB.md",
-        "API Gateway cant Do.md",
-        "APIGateWayCant Do  WAF.md",
-        "ELB - Elastic Load Balancer.md",
-        "IAM.md",
-        "Lambda Cost Control.md",
-        "Lambda investigation.md",
-        "Lambda Timeout.md",
-        "NACL ResourceGroup.md",
-        "Z- Cloud Native.md",
-        "Z91- Cloud Native.md",
-        "Z92- Cloud Native.md",
-        "Z94- Cloud Native.md",
-        "Z95- Cloud Native.md"
     ],
     "Architecture": [
         "1-MicroServices.md"
@@ -113,10 +64,6 @@
         "2.1- Amazon NoSQL DB Use Cases.md",
         "2.2- Amazon NoSQL DB Use Cases.md",
         "3 Nested Transactions.md"
-    ],
-    "DotNet": [
-        "New in .Net 6.md",
-        "New in .Net 8.md"
     ],
     "Event Sourcing": [
         "Azure Event Sourcing.md",
