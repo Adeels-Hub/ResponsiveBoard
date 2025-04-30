@@ -72,6 +72,7 @@
 }
 		
     </style>
+
 </head>
 <body>
     <div class="container-fluid vh-100 d-flex" id="mainContainer">
@@ -91,9 +92,8 @@
 		<div id="fileContent"></div>
   </div>
 </div>
-	
-
     <script>
+	
         async function loadStructure() {
             try {
                 const response = await fetch("structure.json");
@@ -202,6 +202,7 @@
 
         leftPane.addEventListener("mouseenter", () => {
             refreshFolderButtons();
+
         });
 
         leftPane.addEventListener("wheel", (event) => {
@@ -272,6 +273,47 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("overlayPanel").style.display = "none";
     });
   }
+});
+</script>
+
+<script>
+let collapsed = false;
+let originalRowHTML = "";
+
+// On click inside right pane
+document.getElementById("rightPane").addEventListener("click", () => {
+    if (collapsed) return; // Already collapsed
+
+    const filesDiv = document.getElementById("files");
+    const row = filesDiv.querySelector(".row");
+
+    if (row) {
+        originalRowHTML = row.outerHTML; // 🛡️ Save original full row for restore
+
+        row.classList.remove("row");
+        row.style.display = "flex";
+        row.style.flexDirection = "column";
+        row.style.alignItems = "center";
+
+        // Optional: Make cards full width if you want
+        row.querySelectorAll(".col-md-6, .col-lg-4, .col-xl-3").forEach(col => {
+            col.className = "w-100 mb-3"; // Stretch card to full width
+        });
+    }
+    collapsed = true;
+});
+
+// On Escape key press
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && collapsed) {
+        const filesDiv = document.getElementById("files");
+        const existing = filesDiv.querySelector("div[style*='flexDirection']");
+
+        if (existing && originalRowHTML) {
+            existing.outerHTML = originalRowHTML; // 🔥 Restore exactly the original row
+        }
+        collapsed = false;
+    }
 });
 </script>
 

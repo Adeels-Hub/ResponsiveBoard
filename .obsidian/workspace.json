@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "c402de31a13b6cd1",
+        "id": "97f0bfb86943f568",
         "type": "tabs",
         "children": [
           {
-            "id": "034cabd5e1a0d840",
+            "id": "0b5cc40d322e1596",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Security/CSRF.md",
+                "file": "4-Net/Abstract Class vs Interface.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CSRF"
+              "title": "Abstract Class vs Interface"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "line:(<path:)",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -74,7 +74,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -163,20 +164,20 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "034cabd5e1a0d840",
+  "active": "fa3775553ed51ddc",
   "lastOpenFiles": [
-    "Databases/3 Nested Transactions.md",
-    "Security/CSRF.md",
-    "Security/CSRF",
-    "Security",
-    "Databases/2.2- Amazon NoSQL DB Use Cases.md",
-    "3-React/41 All Hooks.md",
-    "5W-AWS/Details/DepOptions.html",
-    "5W-AWS/Details/ZoneRedundant.html",
-    "5W-AWS/Details/ZoneRedundant1.html",
-    "5W-AWS/Details/ZR.html",
-    "5W-AWS/Details/New Text Document.txt",
-    "5W-AWS/Details/Zone Redundant.md",
+    "Uni/G8/oindex.html",
+    "Uni/G8/ogo8_data.json",
+    "Uni/G8/index.html",
+    "Uni/G8/go8_data.json",
+    "Uni/G8",
+    "Uni",
+    "Prices",
+    "DotNet/New in .Net 8.md",
+    "DotNet",
+    "css/theme_extra.css",
+    "css/theme.css",
+    "css",
     "5W-AWS/Z95- Cloud Native.md",
     "5W-AWS/Z94- Cloud Native.md",
     "5W-AWS/Z92- Cloud Native.md",
@@ -188,27 +189,28 @@
     "5W-AWS/Lambda Cost Control.md",
     "5W-AWS/IAM.md",
     "5W-AWS/ELB - Elastic Load Balancer.md",
-    "5W-AWS/Details",
     "5W-AWS/APIGateWayCant Do  WAF.md",
-    "5W-AWS/3-ApiGateWay vs ALB.md",
     "5W-AWS/API Gateway cant Do.md",
+    "5W-AWS/3-ApiGateWay vs ALB.md",
     "5W-AWS/2-Auth ApiGateway.md",
     "5W-AWS/1-API Gatway.md",
-    "5W-AWS",
-    "9-AWS/Details/ZoneRedundant.html",
-    "9-AWS/Z95- Cloud Native.md",
-    "9-AWS/Z94- Cloud Native.md",
-    "9-AWS/Z92- Cloud Native.md",
-    "9-AWS/Z91- Cloud Native.md",
-    "9-AWS/NACL ResourceGroup.md",
+    "3-React/Hooks Categories.md",
+    "3-React/9Redux and Context API.md",
+    "3-React/9 BootStrap vs Material UI.md",
+    "3-React/7 Hook useReducer.md",
+    "3-React/6useMemo useCallback ReactMemo.md",
+    "3-React/5When to use class vs function.md",
+    "3-React/4Hooks.md",
+    "3-React/41 All Hooks.md",
+    "4-Net/img/Pasted image 20250430112023.png",
+    "4-Net/Pasted image 20250430112023.png",
+    "Pasted image 20250429140857.png",
     "5-AKS/DeployOnAKSCluster.gif",
     "AKS/DeployOnAKSCluster.gif",
     "Pasted image 20250312113552.png",
     "Pasted image 20250220163911.png",
     "Pasted image 20250220163447.png",
     "Pasted image 20250220162951.png",
-    "Pasted image 20250128141115.png",
-    "Pasted image 20250128134706.png",
-    "Pasted image 20250128003211.png"
+    "Pasted image 20250128141115.png"
   ]
 }
